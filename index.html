@@ -19,6 +19,9 @@
   <!-- html2canvas Library for E-Ticket Image Download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+  <!-- SweetAlert2 Library Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     body { background-color: #f5f7fa; color: #0f2942; line-height: 1.5; scroll-behavior: smooth; }
@@ -90,7 +93,6 @@
       z-index: 1100;
       overflow: hidden;
       padding: 8px 0;
-      animation: fadeIn 0.2s ease-out;
     }
     .user-dropdown-menu.show { display: block; }
     .dropdown-header { padding: 12px 16px; border-bottom: 1px solid #f0f5ff; background: #fafcff; }
@@ -256,40 +258,6 @@
     .data-table th { background: #f5f7fa; color: #0f2942; }
     .data-table tr:nth-child(even) { background: #fafafa; }
 
-    #customToastContainer {
-      position: fixed;
-      top: 80px;
-      right: 24px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .custom-toast {
-      background: #ffffff;
-      border: 1px solid #2681ff;
-      color: #0f2942;
-      padding: 14px 20px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      min-width: 300px;
-      max-width: 380px;
-      font-size: 13px;
-      animation: slideIn 0.3s ease-out;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .custom-toast.success { border-color: #52c41a; }
-    .custom-toast.error { border-color: #ff4d4f; }
-    .toast-icon { font-size: 18px; margin-top: 2px; }
-    .toast-body h5 { font-size: 14px; color: #2681ff; margin-bottom: 4px; font-weight: 700; }
-    .toast-body p { color: #595959; line-height: 1.4; }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
     .ai-chatbot-widget {
       position: fixed;
       bottom: 24px;
@@ -393,9 +361,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Custom Toast Container -->
-  <div id="customToastContainer"></div>
 
   <!-- Header Navigation -->
   <header>
@@ -910,25 +875,6 @@
     </div>
   </div>
 
-  <div class="modal" id="paymentModal">
-    <div class="modal-content" style="text-align: center;">
-      <h3 style="color:#2681ff; font-weight:800;">ZPRBOOKING.COM Payment</h3>
-      <p style="font-size:13px; color:#595959; margin-top:4px;" id="payServiceTitle">สแกน QR Code ชำระเงินค่าเรือ</p>
-      
-      <div style="background:white; padding:12px; border-radius:12px; width:190px; margin:16px auto; border:1px solid #e5e9f0;">
-        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ZPRBOOKING-PROMPTPAY" style="width:100%;">
-      </div>
-      
-      <p style="font-size:20px; color:#0f2942; font-weight:800;" id="payAmount">ยอดชำระ: ฿0</p>
-      <p style="font-size:11px; color:#8c8c8c;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
-      
-      <button class="btn-action" style="margin-top:16px; background:#52c41a; color:#ffffff;" onclick="simulatePaymentSuccess()">
-        [Demo Simulation] จำลองการสแกนเงินสำเร็จ
-      </button>
-      <button class="close-btn" onclick="closePaymentModal()">ยกเลิกการจอง</button>
-    </div>
-  </div>
-
   <div class="modal" id="adminAuthModal">
     <div class="modal-content" style="max-width:380px;">
       <h3 style="color:#ff9f43; margin-bottom:12px; text-align:center; font-weight:800;">🔑 Admin Authorization</h3>
@@ -1012,19 +958,25 @@
   <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqxuBIryYfww3Q-x6CSGV54tZTAcKyFvUqWq0QmlfLTe_1h5BSi_l15TVv9c18bQGSOA/exec";
 
+    /* SweetAlert2 Toast System */
     function showToast(title, message, type = "success") {
-      const container = document.getElementById('customToastContainer');
-      const toast = document.createElement('div');
-      toast.className = `custom-toast ${type}`;
-      const icon = type === 'success' ? '🎉' : (type === 'error' ? '❌' : 'ℹ️');
-      toast.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-body"><h5>${title}</h5><p>${message}</p></div>`;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.style.transition = "opacity 0.4s, transform 0.4s";
-        toast.style.opacity = "0";
-        toast.style.transform = "translateX(100%)";
-        setTimeout(() => toast.remove(), 400);
-      }, 4500);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+
+      Toast.fire({
+        icon: type === 'error' ? 'error' : (type === 'info' ? 'info' : 'success'),
+        title: title,
+        text: message
+      });
     }
 
     function sendToGoogleSheet(payload) {
@@ -1385,9 +1337,10 @@
       currentUser = null;
       document.getElementById('loginBtn').style.display = 'block';
       document.getElementById('userProfileWrapper').style.display = 'none';
-      showToast("ออกจากระบบ", "ออกจากระบบเรียบร้อยแล้ว", "success");
+      showToast("ออกจากระบบ", "ออกจากระบบเรียบร้อยแล้ว", "info");
     }
 
+    /* Payment SweetAlert2 Modal Integration */
     function startBooking(title, priceStr, slot, capId) {
       if(!currentUser) {
         showToast("กรุณา Log In", "ต้องเข้าสู่ระบบก่อนทำการจองเรือ", "error");
@@ -1397,16 +1350,31 @@
       currentCapElementId = capId;
       const selectedDate = document.getElementById('dateFilter').value;
       currentSelectedTrip = { title, price: priceStr, slot: `${selectedDate} (${slot})` };
-      document.getElementById('payServiceTitle').innerText = title + ' - ' + selectedDate;
-      document.getElementById('payAmount').innerText = 'ยอดชำระ: ' + priceStr;
-      document.getElementById('paymentModal').style.display = 'flex';
+
+      Swal.fire({
+        title: 'ZPRBOOKING.COM Payment',
+        text: `${title} - ${selectedDate}`,
+        html: `
+          <p style="font-size:13px; color:#595959; margin-bottom:12px;">สแกน QR Code เพื่อชำระเงินผ่าน PromptPay</p>
+          <div style="background:white; padding:12px; border-radius:12px; width:190px; margin:0 auto; border:1px solid #e5e9f0;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ZPRBOOKING-PROMPTPAY" style="width:100%;">
+          </div>
+          <p style="font-size:22px; color:#0f2942; font-weight:800; margin-top:12px;">ยอดชำระ: ${priceStr}</p>
+          <p style="font-size:11px; color:#8c8c8c; margin-top:4px;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '[Demo Simulation] สแกนจ่ายสำเร็จ',
+        cancelButtonText: 'ยกเลิกการจอง',
+        confirmButtonColor: '#52c41a',
+        cancelButtonColor: '#ff4d4f'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          simulatePaymentSuccess();
+        }
+      });
     }
 
-    function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
-
     function simulatePaymentSuccess() {
-      closePaymentModal();
-
       if (currentCapElementId) {
         const el = document.getElementById(currentCapElementId);
         if (el) {
@@ -1629,7 +1597,12 @@
       sosVessel.marker.openPopup();
       map.setView([sosVessel.boat.lat, sosVessel.boat.lng], 13);
 
-      showToast("🚨 SOS EMERGENCY TRIGGERED", `แจ้งเหตุฉุกเฉินบนเรือ ${sosVessel.boat.name} พิกัด (${sosVessel.boat.lat.toFixed(4)}, ${sosVessel.boat.lng.toFixed(4)}) สัญญาณสีแดงกะพริบแสดงบนแผนที่แล้ว`, "error");
+      Swal.fire({
+        icon: 'warning',
+        title: '🚨 SOS EMERGENCY TRIGGERED',
+        html: `แจ้งเหตุฉุกเฉินบนเรือ <b>${sosVessel.boat.name}</b><br>พิกัด (${sosVessel.boat.lat.toFixed(4)}, ${sosVessel.boat.lng.toFixed(4)})<br>แสดงสัญญาณเตือนสีแดงกะพริบบนแผนที่แล้ว`,
+        confirmButtonColor: '#ff4d4f'
+      });
     }
 
     function filterCharters() {
