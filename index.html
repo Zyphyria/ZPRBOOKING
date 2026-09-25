@@ -26,7 +26,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     body { background-color: #f5f7fa; color: #0f2942; line-height: 1.5; scroll-behavior: smooth; }
     
-    /* Header - Trip.com Modern Style */
+    /* Header Navigation */
     header { 
       background: #ffffff; 
       position: sticky; top: 0; z-index: 1000; 
@@ -73,7 +73,7 @@
     }
     .btn-login:hover { background: #0066ff; transform: translateY(-1px); }
 
-    /* Trip.com Profile Menu & Dropdown Styling */
+    /* User Profile Card & Dropdown */
     .user-profile-wrapper { position: relative; display: none; z-index: 1010; }
     .user-profile-card {
       display: flex;
@@ -93,7 +93,6 @@
     .rank-badge { background: #eaf2ff; color: #2681ff; padding: 1px 6px; border-radius: 8px; font-weight: bold; }
     .coin-badge { color: #ff9d00; font-weight: bold; display: flex; align-items: center; gap: 2px; }
 
-    /* Trip.com User Dropdown Panel */
     .user-dropdown-menu {
       display: none;
       position: absolute;
@@ -128,7 +127,7 @@
     .dropdown-item.logout-text { color: #ff4d4f; }
     .dropdown-item.logout-text:hover { background: #fff1f0; }
 
-    /* Hero Banner - Trip.com Exact Blue Gradient Style */
+    /* Hero Banner */
     .hero { background: linear-gradient(135deg, #1852bd 0%, #2681ff 50%, #4092ff 100%); padding: 52px 24px 84px; text-align: center; color: #ffffff; position: relative; }
     .hero h1 { font-size: 38px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
     .hero p { color: #eaf2ff; font-size: 15px; opacity: 0.95; }
@@ -156,7 +155,7 @@
     .weather-status { background: #e6f7ff; color: #0066ff; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #91d5ff; }
     .user-ip-location { background: #f6ffed; color: #52c41a; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #b7eb8f; }
 
-    /* Search Box Container Floating Style */
+    /* Search Box */
     .search-wrapper { max-width: 1100px; margin: 0 auto 40px; padding: 0 24px; position: relative; z-index: 20; }
     .search-card { background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid #e5e9f0; box-shadow: 0 12px 32px rgba(15, 41, 66, 0.08); }
     .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 14px; margin-bottom: 20px; }
@@ -189,7 +188,7 @@
 
     .policy-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
     .policy-box { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-    .policy-box h4 { color: #2681ff; font-size: 15px; margin-bottom: 6px; display: flex; align- items: center; gap: 6px; font-weight: 700; }
+    .policy-box h4 { color: #2681ff; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; font-weight: 700; }
     .policy-box p { font-size: 13px; color: #595959; }
 
     .tracker-card { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 20px; padding: 24px; margin-top: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
@@ -230,7 +229,7 @@
     .modal-tab.active { color: #2681ff; border-bottom-color: #2681ff; }
     .modal-form { display: flex; flex-direction: column; gap: 12px; }
     
-    /* 🔴 ปรับปุ่มปิดหน้าต่าง (Close Button) ให้เด่น ชัดเจนยิ่งขึ้น */
+    /* ปุ่มปิดหน้าต่าง Close Button */
     .close-btn { 
       margin-top: 16px; 
       background: #434e5a; 
@@ -431,7 +430,7 @@
             <span style="font-size: 11px; color:#8c8c8c;">❯</span>
           </div>
 
-          <!-- Dropdown Panel (Trip.com Design) -->
+          <!-- Dropdown Panel -->
           <div class="user-dropdown-menu" id="userDropdownMenu">
             <div class="dropdown-header">
               <h5 id="dropdownName">User</h5>
@@ -467,7 +466,7 @@
     <p>ระบบจองเรือท่องเที่ยวและติดตามเรือ GPS Real-Time 20 ลำ ชายฝั่งหาดเจ้าสำราญ จ.เพชรบุรี</p>
   </section>
 
-  <!-- Weather & IP Geolocation Info Bar -->
+  <!-- Weather Info Bar -->
   <div class="weather-bar">
     <div class="weather-info">
       <span>📍 <strong>หาดเจ้าสำราญ:</strong> <span id="liveTemp">☀️ กำลังโหลดอุณหภูมิสด...</span></span>
@@ -479,7 +478,7 @@
     </div>
   </div>
 
-  <!-- Search Engine Section Floating Style -->
+  <!-- Search Engine Section -->
   <div class="search-wrapper" id="search-section">
     <div class="search-card">
       <h3 style="color:#0f2942; margin-bottom: 12px; font-size: 18px; font-weight: 800;">🔍 ค้นหาและเลือกจองทริปเรือท่องเที่ยว</h3>
@@ -522,7 +521,7 @@
     </div>
   </div>
 
-  <!-- Services & Booking Slots Section (Expanded Charters List) -->
+  <!-- Services & Booking Slots Section -->
   <div class="container" id="charters">
     <h2>รายการเรือและรอบบริการที่เปิดจอง (Featured Charters)</h2>
     <div class="cards-grid" id="charterCardsContainer">
@@ -825,12 +824,12 @@
           </div>
         </div>
         <div class="input-group">
-          <label>Email (ยืนยันรหัส OTP จาก Email จริง)</label>
+          <label>Email (รับรหัส OTP ยืนยันสมัคร)</label>
           <div style="display:flex; gap:6px;">
             <input type="email" id="regEmail" placeholder="yourname@gmail.com">
             <button type="button" onclick="sendEmailOTP()" style="padding:0 12px; background:#eaf2ff; color:#2681ff; border:1px solid #2681ff; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">ส่ง OTP</button>
           </div>
-          <input type="text" id="emailOtpInput" placeholder="กรอกรหัส OTP 6 หลักที่ส่งเข้า Email" style="margin-top:4px; display:none;">
+          <input type="text" id="emailOtpInput" placeholder="กรอกรหัส OTP 6 หลักที่ได้รับ" style="margin-top:4px; display:none;">
         </div>
         <div class="input-group">
           <label>เบอร์โทรศัพท์</label>
@@ -1401,15 +1400,28 @@
       closeReviewModal();
     }
 
-    async function sendEmailOTP() {
+    /* 🟢 แก้ไขระบบส่ง OTP: แสดงรหัสบน SweetAlert2 ทันที หาก EmailJS ไม่ส่งเข้าเมล */
+    function sendEmailOTP() {
       const email = document.getElementById('regEmail').value.trim();
       if(!email) return showToast("กรอก Email", "กรุณากรอก Email ก่อนกดส่ง OTP", "error");
 
       generatedEmailOTP = Math.floor(100000 + Math.random() * 900000).toString();
       document.getElementById('emailOtpInput').style.display = 'block';
 
+      // พยายามส่งผ่าน EmailJS
       emailjs.send("service_vf7kj91", "template_6w71s07", { to_email: email, otp_code: generatedEmailOTP }, "TBiTFnSwjv7HfmAgq")
-      .then(() => showToast("ส่ง OTP สำเร็จ", `จัดส่งรหัส OTP ไปยัง Email (${email}) เรียบร้อย`, "success"));
+      .then(() => {
+        showToast("ส่ง OTP สำเร็จ", `จัดส่งรหัส OTP ไปยัง Email (${email}) เรียบร้อย`, "success");
+      })
+      .catch((err) => {
+        // กรณี EmailJS ส่งไม่ผ่าน จะแสดงรหัส OTP สดบนหน้าต่างป็อปอัปแทนทันที
+        Swal.fire({
+          icon: 'info',
+          title: '🔑 รหัส OTP สำหรับยืนยัน',
+          html: `รหัส OTP สำหรับสมัครสมาชิกของคุณคือ: <b style="font-size:26px; color:#2681ff;">${generatedEmailOTP}</b><br><small style="color:#8c8c8c;">(กรอกรหัส 6 หลักนี้ในช่องด้านล่าง แล้วกดลงทะเบียนได้เลย)</small>`,
+          confirmButtonColor: '#2681ff'
+        });
+      });
     }
 
     async function handleRegister() {
@@ -1422,7 +1434,7 @@
       const emailOtp = document.getElementById('emailOtpInput').value.trim();
 
       if(!username || !fName || !lName || !email || !pass) return showToast("ข้อมูลไม่ครบ", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
-      if(!generatedEmailOTP || emailOtp !== generatedEmailOTP) return showToast("OTP ไม่ถูกต้อง", "รหัส OTP ไม่ถูกต้อง", "error");
+      if(!generatedEmailOTP || emailOtp !== generatedEmailOTP) return showToast("OTP ไม่ถูกต้อง", "รหัส OTP ไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง", "error");
 
       currentUser = { name: fName + ' ' + lName, email, phone, username, pass };
       sendToGoogleSheet({ type: "USER_REGISTER", username, password: pass, fullName: fName + ' ' + lName, email, phone });
