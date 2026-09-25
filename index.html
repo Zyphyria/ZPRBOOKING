@@ -109,8 +109,7 @@
     
     .card { background: #ffffff; border-radius: 16px; padding: 20px; border: 1px solid #e5e9f0; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-    .card h3 { color: #0f2942; margin-bottom: 4px; font-size: 18px; font-weight: 700; }
-    .rating-badge { color: #ff9d00; font-size: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+    .card h3 { color: #0f2942; margin-bottom: 10px; font-size: 18px; font-weight: 700; }
     
     .eco-safety-box { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
     .eco-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: #e6fffb; color: #00a854; border: 1px solid #b5f5ec; font-weight: bold; }
@@ -118,7 +117,9 @@
 
     .card p { color: #595959; font-size: 13px; margin-bottom: 12px; line-height: 1.5; }
     .capacity-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; display: inline-block; margin-bottom: 10px; font-weight: 600; }
-    .price-tag { font-size: 20px; color: #ff4d4f; font-weight: 800; margin-bottom: 12px; }
+    
+    /* Price Tag Changed to Black (#0f2942) */
+    .price-tag { font-size: 20px; color: #0f2942; font-weight: 800; margin-bottom: 12px; }
     .slot-title { font-size: 11px; color: #8c8c8c; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
     .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
     .slot-badge { font-size: 11px; padding: 4px 8px; background: #f5f7fa; border: 1px solid #e5e9f0; color: #0f2942; border-radius: 4px; font-weight: 500; }
@@ -429,7 +430,6 @@
       <div class="card" data-category="speedboat" data-service="Whale Spotting">
         <div>
           <h3>Gulf Whale Spotting</h3>
-          <div class="rating-badge">⭐⭐⭐⭐⭐ 4.9 (48 รีวิว) • 💬 <i>"เจอวาฬบรูด้าตัวใหญ่มาก กัปตันบริการดี"</i></div>
           
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Gold (Low Noise)</span>
@@ -454,7 +454,6 @@
       <div class="card" data-category="longtail" data-service="Squid Fishing">
         <div>
           <h3>Night Squid Fishing</h3>
-          <div class="rating-badge">⭐⭐⭐⭐☆ 4.7 (35 รีวิว) • 💬 <i>"ตกหมึกสดๆ ทำซาซิมิบนเรือฟินมาก"</i></div>
           
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Green (LED Attraction)</span>
@@ -479,7 +478,6 @@
       <div class="card" data-category="longtail" data-service="Coastal Cruise">
         <div>
           <h3>Coastal Sunset Cruise</h3>
-          <div class="rating-badge">⭐⭐⭐⭐⭐ 5.0 (22 รีวิว) • 💬 <i>"บรรยากาศโรแมนติก เหมาะกับคู่รัก"</i></div>
           
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Standard</span>
@@ -504,7 +502,6 @@
       <div class="card" data-category="speedboat" data-service="Island Transfer">
         <div>
           <h3>Koh Phai Island Shuttle</h3>
-          <div class="rating-badge">⭐⭐⭐⭐☆ 4.8 (19 รีวิว) • 💬 <i>"เรือเร็ว ปลอดภัย ส่งตรงจุดดำน้ำ"</i></div>
           
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Silver</span>
@@ -739,7 +736,7 @@
             <tr><td>รหัสการจอง (Ref Code):</td><td class="t-val" id="tRefCode" style="color:#2681ff;">#ZPR-89210</td></tr>
             <tr><td>ผู้เดินทาง:</td><td class="t-val" id="tPassengerName">คุณลูกค้า</td></tr>
             <tr><td>วันที่เดินทาง & รอบเวลา:</td><td class="t-val" id="tTimeSlot">รอบเช้า (06:00 - 12:00)</td></tr>
-            <tr><td>ยอดชำระเงินเรียบร้อย:</td><td class="t-val" id="tAmount" style="color:#ff4d4f;">฿4,200</td></tr>
+            <tr><td>ยอดชำระเงินเรียบร้อย:</td><td class="t-val" id="tAmount" style="color:#0f2942;">฿4,200</td></tr>
             <tr><td>จุดขึ้นเรือ:</td><td class="t-val">ท่าเรือหาดเจ้าสำราญ จ.เพชรบุรี</td></tr>
           </table>
           
@@ -797,7 +794,7 @@
         <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ZPRBOOKING-PROMPTPAY" style="width:100%;">
       </div>
       
-      <p style="font-size:20px; color:#ff4d4f; font-weight:800;" id="payAmount">ยอดชำระ: ฿0</p>
+      <p style="font-size:20px; color:#0f2942; font-weight:800;" id="payAmount">ยอดชำระ: ฿0</p>
       <p style="font-size:11px; color:#8c8c8c;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
       
       <button class="btn-action" style="margin-top:16px; background:#52c41a; color:#ffffff;" onclick="simulatePaymentSuccess()">
