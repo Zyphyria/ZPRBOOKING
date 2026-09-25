@@ -21,182 +21,190 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    body { background-color: #0d1b2a; color: #e0e1dd; line-height: 1.5; scroll-behavior: smooth; }
+    body { background-color: #f5f7fa; color: #0f2942; line-height: 1.5; scroll-behavior: smooth; }
     
+    /* Header - Trip.com Light Style */
     header { 
-      background: rgba(11, 19, 43, 0.95); 
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: #ffffff; 
       position: sticky; top: 0; z-index: 1000; 
-      border-bottom: 1px solid rgba(76, 201, 240, 0.2); 
-      box-shadow: 0 4px 24px rgba(0,0,0,0.5); 
+      border-bottom: 1px solid #e5e9f0; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
     }
-    .header-container { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; width: 100%; }
-    .brand-section { display: flex; align-items: center; gap: 12px; }
-    .logo { font-size: 24px; font-weight: 900; color: #4cc9f0; text-decoration: none; letter-spacing: 1px; text-shadow: 0 0 12px rgba(76, 201, 240, 0.4); }
-    .badge-academic { background: rgba(28, 37, 65, 0.9); color: #4cc9f0; font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(76, 201, 240, 0.5); font-weight: 600; }
+    .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; width: 100%; }
+    .brand-section { display: flex; align-items: center; gap: 10px; }
+    .logo { font-size: 24px; font-weight: 900; color: #2681ff; text-decoration: none; letter-spacing: -0.5px; }
+    .badge-academic { background: #eaf2ff; color: #2681ff; font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 600; }
     
-    .nav-menu { display: flex; gap: 12px; list-style: none; align-items: center; }
+    .nav-menu { display: flex; gap: 8px; list-style: none; align-items: center; }
     .nav-menu li a { 
-      color: #e0e1dd; 
-      font-size: 13.5px; 
+      color: #0f2942; 
+      font-size: 14px; 
       font-weight: 600; 
       text-decoration: none; 
-      padding: 8px 16px; 
-      border-radius: 10px; 
-      transition: all 0.25s ease; 
+      padding: 8px 14px; 
+      border-radius: 8px; 
+      transition: all 0.2s ease; 
       display: flex; 
       align-items: center; 
       gap: 6px; 
-      background: rgba(28, 37, 65, 0.85);
-      border: 1px solid rgba(76, 201, 240, 0.45);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
     .nav-menu li a:hover { 
-      color: #ffffff; 
-      background: rgba(76, 201, 240, 0.25); 
-      border-color: #4cc9f0;
-      box-shadow: 0 0 16px rgba(76, 201, 240, 0.6);
-      transform: translateY(-1px);
+      color: #2681ff; 
+      background: #f0f5ff; 
     }
 
-    .btn-login { background: linear-gradient(135deg, #4cc9f0 0%, #3a86ff 100%); color: #0b132b; padding: 8px 20px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; font-size: 13.5px; box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3); transition: transform 0.2s; }
-    .btn-login:hover { transform: translateY(-2px); }
+    .btn-login { background: #2681ff; color: #ffffff; padding: 8px 18px; border-radius: 20px; font-weight: 700; border: none; cursor: pointer; font-size: 13.5px; box-shadow: 0 4px 12px rgba(38, 129, 255, 0.25); transition: all 0.2s; }
+    .btn-login:hover { background: #0066ff; transform: translateY(-1px); }
 
-    .user-profile { display: none; align-items: center; gap: 8px; background: rgba(28, 37, 65, 0.9); padding: 5px 12px; border-radius: 24px; border: 1px solid rgba(76, 201, 240, 0.4); }
-    .user-avatar { width: 28px; height: 28px; background: #4cc9f0; color: #0b132b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
-    .user-name-text { color: #ffffff; font-size: 12.5px; font-weight: 600; }
-    .btn-profile-edit, .btn-my-bookings { background: transparent; color: #4cc9f0; border: 1px solid #4cc9f0; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
-    .btn-profile-edit:hover, .btn-my-bookings:hover { background: #4cc9f0; color: #0b132b; }
-    .btn-logout { background: #ff4757; color: white; border: none; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    .user-profile { display: none; align-items: center; gap: 8px; background: #f0f5ff; padding: 4px 10px; border-radius: 20px; border: 1px solid #d0e1ff; }
+    .user-avatar { width: 28px; height: 28px; background: #2681ff; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
+    .user-name-text { color: #0f2942; font-size: 13px; font-weight: 600; }
+    .btn-profile-edit, .btn-my-bookings { background: #ffffff; color: #2681ff; border: 1px solid #2681ff; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    .btn-profile-edit:hover, .btn-my-bookings:hover { background: #2681ff; color: #ffffff; }
+    .btn-logout { background: #ff4d4f; color: white; border: none; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
 
-    .hero { background: linear-gradient(180deg, #0b132b 0%, #1c2541 100%); padding: 56px 24px 76px; text-align: center; }
-    .hero h1 { font-size: 38px; color: #ffffff; margin-bottom: 8px; letter-spacing: 0.5px; }
-    .hero p { color: #4cc9f0; font-size: 16px; }
+    /* Hero Banner - Trip.com Vibrant Blue Gradient */
+    .hero { background: linear-gradient(135deg, #0f2942 0%, #1d4370 50%, #2681ff 100%); padding: 48px 24px 96px; text-align: center; color: #ffffff; position: relative; }
+    .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .hero p { color: #eaf2ff; font-size: 16px; opacity: 0.9; }
 
+    /* Weather & Location Bar */
     .weather-bar { 
-      background: linear-gradient(135deg, #1c2541 0%, #0b132b 100%); 
-      border: 1px solid #3a506b; 
+      background: #ffffff; 
+      border: 1px solid #e5e9f0; 
       border-radius: 12px;
-      padding: 12px 24px; 
+      padding: 10px 20px; 
       font-size: 13px; 
       display: flex; 
       justify-content: space-between; 
       align-items: center; 
-      color: #4cc9f0; 
-      max-width: 1200px;
-      margin: -24px auto 36px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      color: #0f2942; 
+      max-width: 1100px;
+      margin: -24px auto 32px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 10;
       flex-wrap: wrap;
       gap: 10px;
     }
     .weather-info { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-    .weather-status { background: rgba(0, 255, 136, 0.15); color: #00ff88; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #00ff88; }
-    .user-ip-location { background: rgba(76, 201, 240, 0.15); color: #4cc9f0; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #4cc9f0; }
+    .weather-status { background: #e6f7ff; color: #0066ff; padding: 3px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #91d5ff; }
+    .user-ip-location { background: #f6ffed; color: #52c41a; padding: 3px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #b7eb8f; }
 
-    .search-wrapper { max-width: 1200px; margin: 0 auto 40px; padding: 0 24px; }
-    .search-card { background: #1c2541; border-radius: 16px; padding: 24px; border: 1px solid #3a506b; box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+    /* Search Box Container Floating Style */
+    .search-wrapper { max-width: 1100px; margin: -56px auto 40px; padding: 0 24px; position: relative; z-index: 20; }
+    .search-card { background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid #e5e9f0; box-shadow: 0 12px 32px rgba(15, 41, 66, 0.08); }
     .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; margin-bottom: 20px; }
     .input-group { display: flex; flex-direction: column; gap: 6px; }
-    .input-group label { font-size: 12px; color: #4cc9f0; font-weight: 600; text-transform: uppercase; }
-    .input-group select, .input-group input { padding: 10px; background-color: #0b132b; border: 1px solid #3a506b; border-radius: 8px; color: #ffffff; font-size: 14px; outline: none; }
-    .btn-action { width: 100%; padding: 12px; background-color: #4cc9f0; color: #0b132b; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; }
-    .btn-action:hover { background-color: #3a86ff; color: #ffffff; }
+    .input-group label { font-size: 12px; color: #595959; font-weight: 700; text-transform: uppercase; }
+    .input-group select, .input-group input { padding: 12px; background-color: #f5f7fa; border: 1px solid #d9d9d9; border-radius: 10px; color: #0f2942; font-size: 14px; outline: none; font-weight: 500; transition: border-color 0.2s; }
+    .input-group select:focus, .input-group input:focus { border-color: #2681ff; background: #fff; }
+    .btn-action { width: 100%; padding: 12px; background: #2681ff; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; box-shadow: 0 4px 14px rgba(38, 129, 255, 0.3); transition: background 0.2s; }
+    .btn-action:hover { background: #0066ff; }
 
-    .container { max-width: 1200px; margin: 0 auto 48px; padding: 0 24px; }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+    /* Content Cards Container */
+    .container { max-width: 1100px; margin: 0 auto 48px; padding: 0 24px; }
+    .container h2 { font-size: 22px; font-weight: 800; color: #0f2942; margin-bottom: 16px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
     
-    .card { background: #1c2541; border-radius: 12px; padding: 22px; border: 1px solid #3a506b; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
-    .card h3 { color: #ffffff; margin-bottom: 4px; font-size: 18px; }
-    .rating-badge { color: #ffd15c; font-size: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
+    /* Trip.com Clean Card Style */
+    .card { background: #ffffff; border-radius: 16px; padding: 20px; border: 1px solid #e5e9f0; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .card h3 { color: #0f2942; margin-bottom: 4px; font-size: 18px; font-weight: 700; }
+    .rating-badge { color: #ff9d00; font-size: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 4px; font-weight: 600; }
     
     .eco-safety-box { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-    .eco-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: rgba(0, 200, 83, 0.15); color: #00e676; border: 1px solid #00e676; font-weight: bold; }
-    .safety-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: rgba(76, 201, 240, 0.15); color: #4cc9f0; border: 1px solid #4cc9f0; font-weight: bold; }
+    .eco-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: #e6fffb; color: #00a854; border: 1px solid #b5f5ec; font-weight: bold; }
+    .safety-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: #e6f7ff; color: #1890ff; border: 1px solid #91d5ff; font-weight: bold; }
 
-    .card p { color: #c5d3e8; font-size: 13px; margin-bottom: 12px; }
-    .capacity-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid #00ff88; display: inline-block; margin-bottom: 10px; }
-    .price-tag { font-size: 18px; color: #4cc9f0; font-weight: bold; margin-bottom: 12px; }
-    .slot-title { font-size: 11px; color: #4cc9f0; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .card p { color: #595959; font-size: 13px; margin-bottom: 12px; line-height: 1.5; }
+    .capacity-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; display: inline-block; margin-bottom: 10px; font-weight: 600; }
+    .price-tag { font-size: 20px; color: #ff4d4f; font-weight: 800; margin-bottom: 12px; }
+    .slot-title { font-size: 11px; color: #8c8c8c; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
     .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .slot-badge { font-size: 11px; padding: 4px 8px; background: #0b132b; border: 1px solid #3a506b; color: #c5d3e8; border-radius: 4px; }
+    .slot-badge { font-size: 11px; padding: 4px 8px; background: #f5f7fa; border: 1px solid #e5e9f0; color: #0f2942; border-radius: 4px; font-weight: 500; }
 
+    /* Policy Grid */
     .policy-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
-    .policy-box { background: #1c2541; border: 1px solid #3a506b; border-radius: 12px; padding: 18px; }
-    .policy-box h4 { color: #4cc9f0; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-    .policy-box p { font-size: 13px; color: #c5d3e8; }
+    .policy-box { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .policy-box h4 { color: #2681ff; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .policy-box p { font-size: 13px; color: #595959; }
 
-    .tracker-card { background: #1c2541; border: 1px solid #3a506b; border-radius: 16px; padding: 24px; margin-top: 16px; }
+    /* Tracker Card Style */
+    .tracker-card { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 20px; padding: 24px; margin-top: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
     .tracker-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .tracker-header h3 { color: #4cc9f0; }
-    .live-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4cc9f0; }
-    .pulse-dot { width: 10px; height: 10px; background-color: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; animation: pulse 1.5s infinite; }
+    .tracker-header h3 { color: #0f2942; font-weight: 800; font-size: 18px; }
+    .live-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #52c41a; font-weight: 700; }
+    .pulse-dot { width: 10px; height: 10px; background-color: #52c41a; border-radius: 50%; box-shadow: 0 0 8px #52c41a; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
 
-    #vesselMap { width: 100%; height: 600px; border-radius: 12px; border: 1px solid #3a506b; z-index: 1; }
+    #vesselMap { width: 100%; height: 550px; border-radius: 12px; border: 1px solid #e5e9f0; z-index: 1; }
 
-    /* Custom Leaflet Dark Popup Fix */
+    /* Leaflet Popup Clean Style */
     .leaflet-popup-content-wrapper {
-      background: #0b132b !important;
-      color: #ffffff !important;
-      border: 1px solid #4cc9f0;
-      border-radius: 10px !important;
+      background: #ffffff !important;
+      color: #0f2942 !important;
+      border: 1px solid #e5e9f0;
+      border-radius: 12px !important;
       padding: 6px 10px !important;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
     }
-    .leaflet-popup-tip { background: #0b132b !important; }
+    .leaflet-popup-tip { background: #ffffff !important; }
     .leaflet-popup-content { margin: 10px !important; width: 235px !important; }
 
-    .vessel-info-popup h4 { color: #4cc9f0; margin-bottom: 4px; font-size: 14px; }
+    .vessel-info-popup h4 { color: #2681ff; margin-bottom: 4px; font-size: 14px; font-weight: 700; }
     .vessel-info-popup table { width: 100%; font-size: 12px; margin-top: 6px; border-collapse: collapse; }
-    .vessel-info-popup td { padding: 3px 0; color: #c5d3e8; }
-    .vessel-info-popup td.val { color: #ffffff; font-weight: bold; text-align: right; }
-    .popup-btn { width: 100%; margin-top: 10px; padding: 6px; background: #4cc9f0; color: #0b132b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .vessel-info-popup td { padding: 3px 0; color: #595959; }
+    .vessel-info-popup td.val { color: #0f2942; font-weight: bold; text-align: right; }
+    .popup-btn { width: 100%; margin-top: 10px; padding: 6px; background: #2681ff; color: #ffffff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
-    .map-legend { background: rgba(11, 19, 43, 0.9); border: 1px solid #3a506b; padding: 10px 14px; border-radius: 8px; color: #ffffff; font-size: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
-    .map-legend h5 { color: #4cc9f0; margin-bottom: 6px; font-size: 12px; }
+    .map-legend { background: rgba(255, 255, 255, 0.95); border: 1px solid #e5e9f0; padding: 10px 14px; border-radius: 8px; color: #0f2942; font-size: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .map-legend h5 { color: #2681ff; margin-bottom: 6px; font-size: 12px; font-weight: 700; }
     .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
     .legend-color { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 2000; }
-    .modal-content { background: #1c2541; padding: 28px; border-radius: 12px; border: 1px solid #3a506b; max-width: 550px; width: 92%; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-    .modal-tabs { display: flex; gap: 12px; border-bottom: 1px solid #3a506b; margin-bottom: 20px; }
-    .modal-tab { padding: 8px; background: none; border: none; color: #8d99ae; font-weight: 700; cursor: pointer; border-bottom: 2px solid transparent; }
-    .modal-tab.active { color: #4cc9f0; border-bottom-color: #4cc9f0; }
-    .modal-form { display: flex; flex-direction: column; gap: 10px; }
-    .close-btn { margin-top: 14px; background: #ff4757; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+    /* Modals - Clean Trip.com Light Box */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 41, 66, 0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 2000; }
+    .modal-content { background: #ffffff; padding: 28px; border-radius: 16px; border: 1px solid #e5e9f0; max-width: 550px; width: 92%; max-height: 90vh; overflow-y: auto; box-shadow: 0 12px 32px rgba(0,0,0,0.15); color: #0f2942; }
+    .modal-tabs { display: flex; gap: 12px; border-bottom: 2px solid #f5f7fa; margin-bottom: 20px; }
+    .modal-tab { padding: 8px 12px; background: none; border: none; color: #8c8c8c; font-weight: 700; cursor: pointer; border-bottom: 2px solid transparent; font-size: 15px; }
+    .modal-tab.active { color: #2681ff; border-bottom-color: #2681ff; }
+    .modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .close-btn { margin-top: 14px; background: #f5f7fa; color: #595959; border: 1px solid #d9d9d9; padding: 8px 16px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+    .close-btn:hover { background: #e5e9f0; }
 
-    /* E-Ticket Styling */
+    /* E-Ticket Clean Card */
     .ticket-card {
-      background: linear-gradient(135deg, #0b132b 0%, #1c2541 100%);
-      border: 2px dashed #4cc9f0;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%);
+      border: 2px dashed #2681ff;
       border-radius: 16px;
       padding: 24px;
-      color: #fff;
+      color: #0f2942;
       margin-top: 12px;
       position: relative;
     }
-    .ticket-header { border-bottom: 1px solid #3a506b; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .ticket-header { border-bottom: 1px solid #d0e1ff; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
     .ticket-body table { width: 100%; font-size: 13px; border-collapse: collapse; margin-bottom: 16px; }
-    .ticket-body td { padding: 6px 0; color: #c5d3e8; }
-    .ticket-body td.t-val { color: #ffffff; font-weight: bold; text-align: right; }
-    .ticket-qr-area { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; max-width: 160px; margin: 0 auto; }
+    .ticket-body td { padding: 6px 0; color: #595959; }
+    .ticket-body td.t-val { color: #0f2942; font-weight: bold; text-align: right; }
+    .ticket-qr-area { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; max-width: 160px; margin: 0 auto; border: 1px solid #e5e9f0; }
 
     @media print {
       body * { visibility: hidden; }
       #eTicketModal, #eTicketModal * { visibility: visible; }
-      #eTicketModal { position: absolute; left: 0; top: 0; width: 100%; background: #0b132b; }
+      #eTicketModal { position: absolute; left: 0; top: 0; width: 100%; background: #ffffff; }
       .close-btn, .btn-action { display: none !important; }
     }
 
     .analytics-bar-item { margin-bottom: 10px; }
-    .analytics-label { display: flex; justify-content: space-between; font-size: 12px; color: #c5d3e8; margin-bottom: 4px; }
-    .analytics-track { background: #0b132b; border-radius: 6px; height: 10px; overflow: hidden; border: 1px solid #3a506b; }
-    .analytics-fill { background: linear-gradient(90deg, #4cc9f0, #00ff88); height: 100%; width: 0%; transition: width 0.5s; }
+    .analytics-label { display: flex; justify-content: space-between; font-size: 12px; color: #595959; margin-bottom: 4px; }
+    .analytics-track { background: #f5f7fa; border-radius: 6px; height: 10px; overflow: hidden; border: 1px solid #d9d9d9; }
+    .analytics-fill { background: linear-gradient(90deg, #2681ff, #52c41a); height: 100%; width: 0%; transition: width 0.5s; }
 
     .data-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
-    .data-table th, .data-table td { border: 1px solid #3a506b; padding: 8px 12px; text-align: left; }
-    .data-table th { background: #0b132b; color: #4cc9f0; }
-    .data-table tr:nth-child(even) { background: rgba(11,19,43,0.4); }
+    .data-table th, .data-table td { border: 1px solid #e5e9f0; padding: 8px 12px; text-align: left; }
+    .data-table th { background: #f5f7fa; color: #0f2942; }
+    .data-table tr:nth-child(even) { background: #fafafa; }
 
     #customToastContainer {
       position: fixed;
@@ -208,13 +216,12 @@
       gap: 10px;
     }
     .custom-toast {
-      background: rgba(11, 19, 43, 0.95);
-      border: 1px solid #4cc9f0;
-      color: #ffffff;
+      background: #ffffff;
+      border: 1px solid #2681ff;
+      color: #0f2942;
       padding: 14px 20px;
       border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
       min-width: 300px;
       max-width: 380px;
       font-size: 13px;
@@ -223,17 +230,17 @@
       align-items: flex-start;
       gap: 12px;
     }
-    .custom-toast.success { border-color: #00ff88; }
-    .custom-toast.error { border-color: #ff4757; }
+    .custom-toast.success { border-color: #52c41a; }
+    .custom-toast.error { border-color: #ff4d4f; }
     .toast-icon { font-size: 18px; margin-top: 2px; }
-    .toast-body h5 { font-size: 14px; color: #4cc9f0; margin-bottom: 4px; }
-    .toast-body p { color: #c5d3e8; line-height: 1.4; }
+    .toast-body h5 { font-size: 14px; color: #2681ff; margin-bottom: 4px; font-weight: 700; }
+    .toast-body p { color: #595959; line-height: 1.4; }
     @keyframes slideIn {
       from { transform: translateX(100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* AI Chatbot Widget */
+    /* AI Chatbot Widget - Trip.com Style */
     .ai-chatbot-widget {
       position: fixed;
       bottom: 24px;
@@ -244,14 +251,14 @@
       align-items: flex-end;
     }
     .ai-chat-btn {
-      background: linear-gradient(135deg, #a55eea, #4b7bec);
+      background: linear-gradient(135deg, #2681ff, #0050b3);
       color: #ffffff;
       border: none;
       padding: 12px 20px;
       border-radius: 30px;
       font-weight: bold;
       font-size: 13.5px;
-      box-shadow: 0 8px 24px rgba(165, 94, 234, 0.4);
+      box-shadow: 0 6px 20px rgba(38, 129, 255, 0.35);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -264,22 +271,21 @@
       display: none;
       width: 360px;
       height: 480px;
-      background: #1c2541;
-      border: 1px solid #a55eea;
+      background: #ffffff;
+      border: 1px solid #e5e9f0;
       border-radius: 16px;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
       margin-bottom: 12px;
       flex-direction: column;
       overflow: hidden;
     }
     .ai-chat-header {
-      background: linear-gradient(135deg, #0b132b, #1c2541);
+      background: #2681ff;
       padding: 12px 16px;
-      border-bottom: 1px solid #3a506b;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #a55eea;
+      color: #ffffff;
       font-weight: bold;
       font-size: 14px;
     }
@@ -291,34 +297,35 @@
       flex-direction: column;
       gap: 10px;
       font-size: 12.5px;
+      background: #f5f7fa;
     }
     .chat-msg { padding: 9px 13px; border-radius: 12px; max-width: 88%; line-height: 1.45; word-break: break-word; }
-    .chat-msg.bot { background: #0b132b; color: #c5d3e8; border: 1px solid #3a506b; align-self: flex-start; }
-    .chat-msg.user { background: #a55eea; color: #ffffff; align-self: flex-end; }
+    .chat-msg.bot { background: #ffffff; color: #0f2942; border: 1px solid #e5e9f0; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    .chat-msg.user { background: #2681ff; color: #ffffff; align-self: flex-end; }
     
     .quick-chip-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .quick-chip { background: #1c2541; border: 1px solid #4cc9f0; color: #4cc9f0; padding: 4px 8px; border-radius: 12px; font-size: 11px; cursor: pointer; }
-    .quick-chip:hover { background: #4cc9f0; color: #0b132b; }
+    .quick-chip { background: #ffffff; border: 1px solid #2681ff; color: #2681ff; padding: 4px 8px; border-radius: 12px; font-size: 11px; cursor: pointer; font-weight: 600; }
+    .quick-chip:hover { background: #2681ff; color: #ffffff; }
 
     .ai-chat-footer {
       padding: 10px;
-      border-top: 1px solid #3a506b;
-      background: #0b132b;
+      border-top: 1px solid #e5e9f0;
+      background: #ffffff;
       display: flex;
       gap: 6px;
     }
     .ai-chat-footer input {
       flex: 1;
-      background: #1c2541;
-      border: 1px solid #3a506b;
+      background: #f5f7fa;
+      border: 1px solid #d9d9d9;
       border-radius: 6px;
-      color: #fff;
+      color: #0f2942;
       padding: 8px 10px;
       font-size: 12px;
       outline: none;
     }
     .ai-chat-footer button {
-      background: #a55eea;
+      background: #2681ff;
       color: #fff;
       border: none;
       padding: 8px 14px;
@@ -328,12 +335,13 @@
       font-size: 12px;
     }
 
-    footer { background: #0b132b; border-top: 1px solid #1c2541; padding: 36px 24px; font-size: 13px; color: #8d99ae; }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; text-align: left; }
-    .footer-col h4 { color: #4cc9f0; font-size: 15px; margin-bottom: 10px; }
-    .footer-col p { color: #c5d3e8; font-size: 13px; margin-bottom: 6px; }
-    .maps-btn { display: inline-block; margin-top: 8px; background: #1c2541; border: 1px solid #4cc9f0; color: #4cc9f0; padding: 6px 12px; border-radius: 6px; font-weight: bold; text-decoration: none; font-size: 12px; }
-    .maps-btn:hover { background: #4cc9f0; color: #0b132b; }
+    /* Footer - Trip.com Style */
+    footer { background: #0f2942; border-top: 1px solid #1d4370; padding: 40px 24px; font-size: 13px; color: #a3b8cc; }
+    .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; text-align: left; }
+    .footer-col h4 { color: #ffffff; font-size: 15px; margin-bottom: 12px; font-weight: 700; }
+    .footer-col p { color: #d0e1ff; font-size: 13px; margin-bottom: 6px; }
+    .maps-btn { display: inline-block; margin-top: 8px; background: #2681ff; color: #ffffff; padding: 6px 12px; border-radius: 6px; font-weight: bold; text-decoration: none; font-size: 12px; }
+    .maps-btn:hover { background: #0066ff; }
   </style>
 </head>
 <body>
@@ -345,7 +353,7 @@
   <header>
     <div class="header-container">
       <div class="brand-section">
-        <a href="#" class="logo">ZPRBOOKING.COM</a>
+        <a href="#" class="logo">ZPRBOOKING<span style="color:#0f2942;">.COM</span></a>
         <span class="badge-academic">Thesis Prototype</span>
       </div>
       <nav>
@@ -364,14 +372,14 @@
           <button class="btn-profile-edit" onclick="openProfileModal()">⚙️ บัญชี</button>
           <button class="btn-logout" onclick="logout()">Logout</button>
         </div>
-        <button onclick="openAdminAuthModal()" style="background:#ff9f43; border:none; color:#0b132b; font-weight:bold; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">🔑 Admin</button>
+        <button onclick="openAdminAuthModal()" style="background:#ff9f43; border:none; color:#ffffff; font-weight:bold; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">🔑 Admin</button>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>ZPRBOOKING.COM</h1>
+    <h1>Every Journey is a New Beginning</h1>
     <p>ระบบจองเรือท่องเที่ยวและติดตามเรือ GPS Real-Time 20 ลำ ชายฝั่งหาดเจ้าสำราญ จ.เพชรบุรี</p>
   </section>
 
@@ -387,10 +395,10 @@
     </div>
   </div>
 
-  <!-- Search Engine Section -->
+  <!-- Search Engine Section Floating Style -->
   <div class="search-wrapper" id="search-section">
     <div class="search-card">
-      <h3 style="color:#4cc9f0; margin-bottom: 12px;">ค้นหาและกรองบริการเรือท่องเที่ยว</h3>
+      <h3 style="color:#0f2942; margin-bottom: 12px; font-size: 18px; font-weight: 800;">🔍 ค้นหาและเลือกจองทริปเรือท่องเที่ยว</h3>
 
       <div class="search-grid">
         <div class="input-group">
@@ -416,13 +424,13 @@
           <select id="dateFilter"></select>
         </div>
       </div>
-      <button class="btn-action" onclick="filterCharters()">🔍 ค้นหาเรือว่าง (Filter Available Charters)</button>
+      <button class="btn-action" onclick="filterCharters()">🔍 ค้นหาเรือว่าง (Search Available Charters)</button>
     </div>
   </div>
 
   <!-- Services & Booking Slots Section -->
   <div class="container" id="charters">
-    <h2>รายการเรือและรอบบริการที่เปิดจอง (Featured Charters & Slots)</h2>
+    <h2>รายการเรือและรอบบริการที่เปิดจอง (Featured Charters)</h2>
     <div class="cards-grid" id="charterCardsContainer">
       
       <!-- Card 1 -->
@@ -432,7 +440,7 @@
           <div class="rating-badge">⭐⭐⭐⭐⭐ 4.9 (48 รีวิว) • 💬 <i>"เจอวาฬบรูด้าตัวใหญ่มาก กัปตันบริการดี"</i></div>
           
           <div class="eco-safety-box">
-            <span class="eco-badge">🌿 Eco-Gold (Low Engine Noise)</span>
+            <span class="eco-badge">🌿 Eco-Gold (Low Noise)</span>
             <span class="safety-badge">🛡️ Safety Index 100%</span>
           </div>
 
@@ -445,8 +453,8 @@
           </div>
         </div>
         <div>
-          <div class="price-tag">฿4,200 / ลำ</div>
-          <button class="btn-action" onclick="startBooking('Gulf Whale Spotting (ชมวาฬบรูด้า)', '฿4,200', '06:00 - 12:00', 'cap-1')">จองรอบนี้ (Select & Reserve)</button>
+          <div class="price-tag">฿4,200 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Gulf Whale Spotting (ชมวาฬบรูด้า)', '฿4,200', '06:00 - 12:00', 'cap-1')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
@@ -470,8 +478,8 @@
           </div>
         </div>
         <div>
-          <div class="price-tag">฿2,800 / ลำ</div>
-          <button class="btn-action" onclick="startBooking('Night Squid Fishing (ตกหมึกกลางคืน)', '฿2,800', '18:00 - 22:00', 'cap-2')">จองรอบนี้ (Select & Reserve)</button>
+          <div class="price-tag">฿2,800 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Night Squid Fishing (ตกหมึกกลางคืน)', '฿2,800', '18:00 - 22:00', 'cap-2')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
@@ -495,8 +503,8 @@
           </div>
         </div>
         <div>
-          <div class="price-tag">฿1,500 / ลำ</div>
-          <button class="btn-action" onclick="startBooking('Coastal Sunset Cruise (ล่องเรือชมพระอาทิตย์ตก)', '฿1,500', '16:30 - 18:30', 'cap-3')">จองรอบนี้ (Select & Reserve)</button>
+          <div class="price-tag">฿1,500 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Coastal Sunset Cruise (ล่องเรือชมพระอาทิตย์ตก)', '฿1,500', '16:30 - 18:30', 'cap-3')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
@@ -520,8 +528,8 @@
           </div>
         </div>
         <div>
-          <div class="price-tag">฿3,500 / ลำ</div>
-          <button class="btn-action" onclick="startBooking('Koh Phai Island Shuttle (รับส่งเกาะไผ่)', '฿3,500', '08:00 - 12:00', 'cap-4')">จองรอบนี้ (Select & Reserve)</button>
+          <div class="price-tag">฿3,500 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Koh Phai Island Shuttle (รับส่งเกาะไผ่)', '฿3,500', '08:00 - 12:00', 'cap-4')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
@@ -530,7 +538,7 @@
 
   <!-- Policy & Safety Section -->
   <div class="container">
-    <h2 style="margin-bottom:16px;">🛡️ ข้อกำหนดนโยบายและการดูแลความปลอดภัยในการเดินทาง</h2>
+    <h2>🛡️ ข้อกำหนดนโยบายและการดูแลความปลอดภัยในการเดินทาง</h2>
     <div class="policy-wrapper">
       <div class="policy-box">
         <h4>🌊 นโยบายการยกเลิก & คืนเงิน</h4>
@@ -553,13 +561,13 @@
       <div class="tracker-header">
         <div>
           <h3>📍 Live Hat Chao Samran Fleet Tracker (20 Active Vessels)</h3>
-          <p style="font-size: 13px; color: #c5d3e8;">แผนที่แสดงพิกัด GPS ตำแหน่งเรือท่องเที่ยว 20 ลำ ชายฝั่งหาดเจ้าสำราญ ขยับเคลื่อนที่สุ่มสด Real-Time (Auto-Update Every 3s)</p>
+          <p style="font-size: 13px; color: #595959;">แผนที่แสดงพิกัด GPS ตำแหน่งเรือท่องเที่ยว 20 ลำ ชายฝั่งหาดเจ้าสำราญ ขยับเคลื่อนที่สุ่มสด Real-Time (Auto-Update Every 3s)</p>
         </div>
         <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-          <button onclick="focusHatChaoSamran()" style="background:#4cc9f0; color:#0b132b; border:none; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">
+          <button onclick="focusHatChaoSamran()" style="background:#eaf2ff; color:#2681ff; border:1px solid #2681ff; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">
             🎯 โฟกัสหาดเจ้าสำราญ
           </button>
-          <button onclick="triggerEmergencySOS()" style="background:#ff4757; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:6px; box-shadow:0 0 10px rgba(255,71,87,0.5);">
+          <button onclick="triggerEmergencySOS()" style="background:#ff4d4f; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:6px; box-shadow:0 0 10px rgba(255,77,79,0.3);">
             🚨 SOS สัญญาณฉุกเฉิน (Simulate Rescue)
           </button>
           <div class="live-status">
@@ -601,7 +609,7 @@
       <div class="footer-col">
         <h4>ZPRBOOKING.COM</h4>
         <p>ระบบบริหารจัดการจองเรือท่องเที่ยวและติดตามเรือ GPS ชายฝั่งหาดเจ้าสำราญ อำเภอเมืองเพชรบุรี จังหวัดเพชรบุรี</p>
-        <p style="font-size:11px; color:#8d99ae; margin-top:10px;">Computer Science Thesis Prototype © 2026</p>
+        <p style="font-size:11px; color:#8c8c8c; margin-top:10px;">Computer Science Thesis Prototype © 2026</p>
       </div>
       <div class="footer-col">
         <h4>📞 ศูนย์บริการ & ติดต่อฉุกเฉิน 24 ชม.</h4>
@@ -653,7 +661,7 @@
           <label>Email (ยืนยันรหัส OTP จาก Email จริง)</label>
           <div style="display:flex; gap:6px;">
             <input type="email" id="regEmail" placeholder="yourname@gmail.com">
-            <button type="button" onclick="sendEmailOTP()" style="padding:0 8px; background:#1d3557; color:#4cc9f0; border:1px solid #4cc9f0; border-radius:6px; cursor:pointer; font-size:11px;">ส่ง OTP</button>
+            <button type="button" onclick="sendEmailOTP()" style="padding:0 12px; background:#eaf2ff; color:#2681ff; border:1px solid #2681ff; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">ส่ง OTP</button>
           </div>
           <input type="text" id="emailOtpInput" placeholder="กรอกรหัส OTP 6 หลักที่ส่งเข้า Email" style="margin-top:4px; display:none;">
         </div>
@@ -673,7 +681,7 @@
 
   <div class="modal" id="profileModal">
     <div class="modal-content">
-      <h3 style="color:#4cc9f0; margin-bottom:16px;">⚙️ แก้ไขข้อมูลบัญชี (Account Settings)</h3>
+      <h3 style="color:#0f2942; margin-bottom:16px;">⚙️ แก้ไขข้อมูลบัญชี (Account Settings)</h3>
       <div class="modal-form">
         <div class="input-group">
           <label>Username (แก้ไขไม่ได้)</label>
@@ -706,11 +714,11 @@
 
   <div class="modal" id="myBookingsModal">
     <div class="modal-content">
-      <h3 style="color:#4cc9f0; margin-bottom:12px;">📋 ประวัติการจองเรือของฉัน (My Bookings)</h3>
-      <p style="font-size:12px; color:#c5d3e8;">รายการเรือที่ชำระเงินเรียบร้อยแล้ว ดึงตรงจากฐานข้อมูล</p>
+      <h3 style="color:#0f2942; margin-bottom:12px;">📋 ประวัติการจองเรือของฉัน (My Bookings)</h3>
+      <p style="font-size:12px; color:#595959;">รายการเรือที่ชำระเงินเรียบร้อยแล้ว ดึงตรงจากฐานข้อมูล</p>
       
       <div id="bookingsListContainer">
-        <p style="margin-top:16px; font-size:13px; color:#8d99ae;">กำลังโหลดข้อมูลการจอง...</p>
+        <p style="margin-top:16px; font-size:13px; color:#8c8c8c;">กำลังโหลดข้อมูลการจอง...</p>
       </div>
 
       <button class="close-btn" onclick="closeMyBookingsModal()">ปิดหน้าต่าง</button>
@@ -720,43 +728,43 @@
   <!-- E-Ticket / Digital Boarding Pass Modal -->
   <div class="modal" id="eTicketModal">
     <div class="modal-content" style="max-width:480px;">
-      <h3 style="color:#00ff88; text-align:center; margin-bottom:4px;">🎟️ DIGITAL BOARDING PASS</h3>
-      <p style="font-size:11px; color:#8d99ae; text-align:center;">ตั๋วขึ้นเรือท่องเที่ยวหาดเจ้าสำราญ (ZPRBOOKING.COM)</p>
+      <h3 style="color:#2681ff; text-align:center; margin-bottom:4px; font-weight:800;">🎟️ DIGITAL BOARDING PASS</h3>
+      <p style="font-size:11px; color:#8c8c8c; text-align:center;">ตั๋วขึ้นเรือท่องเที่ยวหาดเจ้าสำราญ (ZPRBOOKING.COM)</p>
       
       <div class="ticket-card" id="ticketCardPrint">
         <div class="ticket-header">
           <div>
-            <h4 style="color:#4cc9f0; font-size:16px;" id="tServiceTitle">Gulf Whale Spotting</h4>
-            <span style="font-size:10px; color:#8d99ae;">Hat Chao Samran Marine Charter</span>
+            <h4 style="color:#2681ff; font-size:16px;" id="tServiceTitle">Gulf Whale Spotting</h4>
+            <span style="font-size:10px; color:#8c8c8c;">Hat Chao Samran Marine Charter</span>
           </div>
           <div style="text-align:right;">
-            <span style="font-size:11px; background:#00ff88; color:#0b132b; padding:2px 8px; border-radius:10px; font-weight:bold;">CONFIRMED</span>
+            <span style="font-size:11px; background:#52c41a; color:#ffffff; padding:2px 8px; border-radius:10px; font-weight:bold;">CONFIRMED</span>
           </div>
         </div>
         
         <div class="ticket-body">
           <table>
-            <tr><td>รหัสการจอง (Ref Code):</td><td class="t-val" id="tRefCode" style="color:#ffd15c;">#ZPR-89210</td></tr>
+            <tr><td>รหัสการจอง (Ref Code):</td><td class="t-val" id="tRefCode" style="color:#2681ff;">#ZPR-89210</td></tr>
             <tr><td>ผู้เดินทาง:</td><td class="t-val" id="tPassengerName">คุณลูกค้า</td></tr>
             <tr><td>วันที่เดินทาง & รอบเวลา:</td><td class="t-val" id="tTimeSlot">รอบเช้า (06:00 - 12:00)</td></tr>
-            <tr><td>ยอดชำระเงินเรียบร้อย:</td><td class="t-val" id="tAmount" style="color:#00ff88;">฿4,200</td></tr>
+            <tr><td>ยอดชำระเงินเรียบร้อย:</td><td class="t-val" id="tAmount" style="color:#ff4d4f;">฿4,200</td></tr>
             <tr><td>จุดขึ้นเรือ:</td><td class="t-val">ท่าเรือหาดเจ้าสำราญ จ.เพชรบุรี</td></tr>
           </table>
           
           <div class="ticket-qr-area">
             <img id="ticketQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=ZPR-PASS-CONFIRMED" style="width:100%; height:auto;">
-            <p style="font-size:9.5px; color:#0b132b; font-weight:bold; margin-top:4px;">สแกนเพื่อลงเรือ (Scan at Pier)</p>
+            <p style="font-size:9.5px; color:#0f2942; font-weight:bold; margin-top:4px;">สแกนเพื่อลงเรือ (Scan at Pier)</p>
           </div>
         </div>
       </div>
 
-      <div style="margin-top:14px; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; font-size:11px; color:#c5d3e8;">
+      <div style="margin-top:14px; background:#f5f7fa; padding:10px; border-radius:8px; font-size:11px; color:#595959; border:1px solid #e5e9f0;">
         💡 <strong>คำแนะนำ:</strong> กรุณาแสดงหน้าจอ E-Ticket นี้แก่กัปตันเรือ ณ ท่าเรือหาดเจ้าสำราญ ก่อนเวลาออกเรือ 15 นาที
       </div>
 
       <div style="display:flex; gap:8px; margin-top:12px;">
-        <button class="btn-action" style="background:#4cc9f0; color:#0b132b;" onclick="window.print()">🖨️ พิมพ์ตั๋ว</button>
-        <button class="btn-action" style="background:#00ff88; color:#0b132b;" onclick="downloadTicketImage()">📸 โหลดเป็นรูปภาพ</button>
+        <button class="btn-action" style="background:#2681ff; color:#ffffff;" onclick="window.print()">🖨️ พิมพ์ตั๋ว</button>
+        <button class="btn-action" style="background:#52c41a; color:#ffffff;" onclick="downloadTicketImage()">📸 โหลดเป็นรูปภาพ</button>
       </div>
       <button class="close-btn" onclick="closeETicketModal()">ปิดตั๋ว</button>
     </div>
@@ -764,8 +772,8 @@
 
   <div class="modal" id="reviewModal">
     <div class="modal-content" style="max-width:420px;">
-      <h3 style="color:#ffd15c; margin-bottom:12px; text-align:center;">📝 แบบประเมินความพึงพอใจทริปเรือ</h3>
-      <p style="font-size:12px; color:#c5d3e8; text-align:center; margin-bottom:16px;" id="reviewTripTitle">กิจกรรมบริการเรือ</p>
+      <h3 style="color:#ff9d00; margin-bottom:12px; text-align:center; font-weight:800;">📝 แบบประเมินความพึงพอใจทริปเรือ</h3>
+      <p style="font-size:12px; color:#595959; text-align:center; margin-bottom:16px;" id="reviewTripTitle">กิจกรรมบริการเรือ</p>
       
       <div class="modal-form">
         <div class="input-group">
@@ -780,9 +788,9 @@
         </div>
         <div class="input-group">
           <label>ความคิดเห็น / ข้อเสนอแนะการบริการกัปตัน</label>
-          <textarea id="reviewCommentText" rows="3" placeholder="เขียนความประทับใจเกี่ยวกับการบริการ อุปกรณ์เรือ หรือสภาพอากาศ..." style="padding:10px; background:#0b132b; border:1px solid #3a506b; border-radius:8px; color:#fff; font-size:13px; outline:none; resize:none;"></textarea>
+          <textarea id="reviewCommentText" rows="3" placeholder="เขียนความประทับใจเกี่ยวกับการบริการ อุปกรณ์เรือ หรือสภาพอากาศ..." style="padding:10px; background:#f5f7fa; border:1px solid #d9d9d9; border-radius:8px; color:#0f2942; font-size:13px; outline:none; resize:none;"></textarea>
         </div>
-        <button class="btn-action" style="background:#ffd15c; color:#0b132b; margin-top:10px;" onclick="submitTripReview()">ส่งรีวิว & คะแนนประเมิน</button>
+        <button class="btn-action" style="background:#ff9d00; color:#ffffff; margin-top:10px;" onclick="submitTripReview()">ส่งรีวิว & คะแนนประเมิน</button>
       </div>
       <button class="close-btn" onclick="closeReviewModal()">ยกเลิก</button>
     </div>
@@ -790,17 +798,17 @@
 
   <div class="modal" id="paymentModal">
     <div class="modal-content" style="text-align: center;">
-      <h3 style="color:#4cc9f0;">ZPRBOOKING.COM Payment</h3>
-      <p style="font-size:13px; color:#c5d3e8; margin-top:4px;" id="payServiceTitle">สแกน QR Code ชำระเงินค่าเรือ</p>
+      <h3 style="color:#2681ff; font-weight:800;">ZPRBOOKING.COM Payment</h3>
+      <p style="font-size:13px; color:#595959; margin-top:4px;" id="payServiceTitle">สแกน QR Code ชำระเงินค่าเรือ</p>
       
-      <div style="background:white; padding:12px; border-radius:12px; width:190px; margin:16px auto;">
+      <div style="background:white; padding:12px; border-radius:12px; width:190px; margin:16px auto; border:1px solid #e5e9f0;">
         <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ZPRBOOKING-PROMPTPAY" style="width:100%;">
       </div>
       
-      <p style="font-size:20px; color:#00ff88; font-weight:bold;" id="payAmount">ยอดชำระ: ฿0</p>
-      <p style="font-size:11px; color:#8d99ae;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
+      <p style="font-size:20px; color:#ff4d4f; font-weight:800;" id="payAmount">ยอดชำระ: ฿0</p>
+      <p style="font-size:11px; color:#8c8c8c;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
       
-      <button class="btn-action" style="margin-top:16px; background:#00ff88; color:#0b132b;" onclick="simulatePaymentSuccess()">
+      <button class="btn-action" style="margin-top:16px; background:#52c41a; color:#ffffff;" onclick="simulatePaymentSuccess()">
         [Demo Simulation] จำลองการสแกนเงินสำเร็จ
       </button>
       <button class="close-btn" onclick="closePaymentModal()">ยกเลิกการจอง</button>
@@ -809,7 +817,7 @@
 
   <div class="modal" id="adminAuthModal">
     <div class="modal-content" style="max-width:380px;">
-      <h3 style="color:#ff9f43; margin-bottom:12px; text-align:center;">🔑 Admin Authorization</h3>
+      <h3 style="color:#ff9f43; margin-bottom:12px; text-align:center; font-weight:800;">🔑 Admin Authorization</h3>
       <div class="modal-form">
         <div class="input-group">
           <label>Admin Username</label>
@@ -819,7 +827,7 @@
           <label>Admin Password</label>
           <input type="password" id="adminPassVal" placeholder="••••••••">
         </div>
-        <button class="btn-action" style="background:#ff9f43; color:#0b132b; margin-top:10px;" onclick="verifyAdminAccess()">เข้าสู่ระบบ Admin</button>
+        <button class="btn-action" style="background:#ff9f43; color:#ffffff; margin-top:10px;" onclick="verifyAdminAccess()">เข้าสู่ระบบ Admin</button>
       </div>
       <button class="close-btn" onclick="closeAdminAuthModal()">ยกเลิก</button>
     </div>
@@ -828,23 +836,23 @@
   <div class="modal" id="adminModal">
     <div class="modal-content" style="max-width: 780px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="color:#ff9f43;">🔑 Admin Analytics & Fleet Dashboard</h3>
-        <button onclick="exportBookingsCSV()" style="background:#00ff88; color:#0b132b; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;">📥 Export Data (CSV)</button>
+        <h3 style="color:#2681ff; font-weight:800;">🔑 Admin Analytics & Fleet Dashboard</h3>
+        <button onclick="exportBookingsCSV()" style="background:#52c41a; color:#ffffff; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;">📥 Export Data (CSV)</button>
       </div>
       
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:16px;">
-        <div style="background:#0b132b; padding:12px; border-radius:8px; border:1px solid #3a506b;">
-          <span style="font-size:11px; color:#8d99ae;">ยอดขายรวมทั้งหมด</span>
-          <h2 style="color:#00ff88;" id="adminTotalSales">฿0</h2>
+        <div style="background:#f5f7fa; padding:12px; border-radius:8px; border:1px solid #e5e9f0;">
+          <span style="font-size:11px; color:#8c8c8c;">ยอดขายรวมทั้งหมด</span>
+          <h2 style="color:#52c41a;" id="adminTotalSales">฿0</h2>
         </div>
-        <div style="background:#0b132b; padding:12px; border-radius:8px; border:1px solid #3a506b;">
-          <span style="font-size:11px; color:#8d99ae;">จำนวนทริปการจองสำเร็จ</span>
-          <h2 style="color:#4cc9f0;" id="adminTotalCount">0 ทริป</h2>
+        <div style="background:#f5f7fa; padding:12px; border-radius:8px; border:1px solid #e5e9f0;">
+          <span style="font-size:11px; color:#8c8c8c;">จำนวนทริปการจองสำเร็จ</span>
+          <h2 style="color:#2681ff;" id="adminTotalCount">0 ทริป</h2>
         </div>
       </div>
 
-      <h4 style="color:#4cc9f0; margin-bottom:8px; font-size:13.5px;">📊 สถิติความนิยมกิจกรรมเรือ (Popularity Breakdown):</h4>
-      <div style="background:#0b132b; padding:14px; border-radius:8px; border:1px solid #3a506b; margin-bottom:16px;">
+      <h4 style="color:#0f2942; margin-bottom:8px; font-size:13.5px; font-weight:700;">📊 สถิติความนิยมกิจกรรมเรือ (Popularity Breakdown):</h4>
+      <div style="background:#f5f7fa; padding:14px; border-radius:8px; border:1px solid #e5e9f0; margin-bottom:16px;">
         <div class="analytics-bar-item">
           <div class="analytics-label"><span>🐋 Whale Spotting (ชมวาฬบรูด้า)</span><span id="statWhaleText">0 ทริป</span></div>
           <div class="analytics-track"><div class="analytics-fill" id="statWhaleFill"></div></div>
@@ -863,7 +871,7 @@
         </div>
       </div>
 
-      <h4 style="color:#ffffff; margin-bottom:8px; font-size:13.5px;">รายการการจองเรือล่าสุดในระบบ:</h4>
+      <h4 style="color:#0f2942; margin-bottom:8px; font-size:13.5px; font-weight:700;">รายการการจองเรือล่าสุดในระบบ:</h4>
       <div style="max-height: 200px; overflow-y: auto;">
         <table class="data-table">
           <thead>
@@ -1093,7 +1101,7 @@
       if(!currentUser) return;
       document.getElementById('myBookingsModal').style.display = 'flex';
       const container = document.getElementById('bookingsListContainer');
-      container.innerHTML = `<p style="margin-top:16px; font-size:13px; color:#8d99ae;">กำลังโหลดข้อมูลการจอง...</p>`;
+      container.innerHTML = `<p style="margin-top:16px; font-size:13px; color:#8c8c8c;">กำลังโหลดข้อมูลการจอง...</p>`;
 
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL + `?action=getUserBookings&username=${encodeURIComponent(currentUser.username)}`);
@@ -1107,19 +1115,19 @@
               <td>${b.service}</td>
               <td>${b.slot}</td>
               <td>
-                <span style="color:#00ff88;">${b.status}</span><br>
-                <button onclick="showETicket('${b.service}', '${b.slot}', '฿2,800')" style="margin-top:4px; background:#4cc9f0; color:#0b132b; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">🎟️ ดูตั๋ว (E-Ticket)</button>
-                <button onclick="openReviewModal('${b.service}')" style="margin-top:4px; background:#ffd15c; color:#0b132b; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">⭐ รีวิว</button>
+                <span style="color:#52c41a; font-weight:bold;">${b.status}</span><br>
+                <button onclick="showETicket('${b.service}', '${b.slot}', '฿2,800')" style="margin-top:4px; background:#2681ff; color:#ffffff; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">🎟️ ดูตั๋ว (E-Ticket)</button>
+                <button onclick="openReviewModal('${b.service}')" style="margin-top:4px; background:#ff9d00; color:#ffffff; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">⭐ รีวิว</button>
               </td>
             </tr>`;
           });
           html += `</tbody></table>`;
           container.innerHTML = html;
         } else {
-          container.innerHTML = `<p style="margin-top:16px; color:#c5d3e8;">ยังไม่พบประวัติการจองเรือของคุณ</p>`;
+          container.innerHTML = `<p style="margin-top:16px; color:#595959;">ยังไม่พบประวัติการจองเรือของคุณ</p>`;
         }
       } catch(e) {
-        container.innerHTML = `<p style="margin-top:16px; color:#ff4757;">ไม่สามารถเชื่อมต่อฐานข้อมูลได้</p>`;
+        container.innerHTML = `<p style="margin-top:16px; color:#ff4d4f;">ไม่สามารถเชื่อมต่อฐานข้อมูลได้</p>`;
       }
     }
 
@@ -1144,7 +1152,7 @@
 
     function downloadTicketImage() {
       const card = document.getElementById('ticketCardPrint');
-      html2canvas(card, { backgroundColor: '#0b132b', scale: 2 }).then(canvas => {
+      html2canvas(card, { backgroundColor: '#ffffff', scale: 2 }).then(canvas => {
         const link = document.createElement('a');
         link.download = `ZPR_ETicket_${new Date().getTime()}.png`;
         link.href = canvas.toDataURL('image/png');
@@ -1270,7 +1278,7 @@
         const el = document.getElementById(currentCapElementId);
         if (el) {
           el.innerText = "💺 ที่นั่งคงเหลือ: 1 ที่นั่ง (เกือบเต็ม)";
-          el.style.color = "#ff4757";
+          el.style.color = "#ff4d4f";
         }
       }
 
@@ -1347,12 +1355,12 @@
 
           let html = "";
           (result.bookingsList || []).forEach(b => {
-            html += `<tr><td>${b.time}</td><td>${b.name}</td><td>${b.service}</td><td>${b.slot}</td><td style="color:#00ff88;">${b.status}</td></tr>`;
+            html += `<tr><td>${b.time}</td><td>${b.name}</td><td>${b.service}</td><td>${b.slot}</td><td style="color:#52c41a; font-weight:bold;">${b.status}</td></tr>`;
           });
           tbody.innerHTML = html || `<tr><td colspan="5">ยังไม่มีรายการจองเข้ามา</td></tr>`;
         }
       } catch(e) {
-        tbody.innerHTML = `<tr><td colspan="5" style="color:#ff4757;">ดึงข้อมูลล้มเหลว</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#ff4d4f;">ดึงข้อมูลล้มเหลว</td></tr>`;
       }
     }
 
@@ -1396,8 +1404,8 @@
     }).addTo(map);
 
     const serviceColors = {
-      "Whale Spotting": "#00ff88", "Squid Fishing": "#00d2ff", "Fishing": "#ff3366",
-      "Coastal Cruise": "#ff9f43", "Island Transfer": "#ffd15c"
+      "Whale Spotting": "#52c41a", "Squid Fishing": "#2681ff", "Fishing": "#ff4d4f",
+      "Coastal Cruise": "#ff9d00", "Island Transfer": "#722ed1"
     };
 
     function createBoatMarker(color, extraClass = "") {
@@ -1408,9 +1416,7 @@
       });
     }
 
-    // 20 Local Vessels at Hat Chao Samran Coast Boundaries:
-    // Latitude: 12.9200 to 13.0800
-    // Longitude: 100.0800 to 100.2200
+    // 20 Local Vessels at Hat Chao Samran Coast
     const vessels = [
       { id: "V-01", name: "Chao Samran Speed 1", type: "speedboat", service: "Whale Spotting", slot: "06:00 - 12:00", lat: 13.0300, lng: 100.1500, speed: "14.2 knots", captain: "Somchai", fuel: "88%", lifejacket: "15/15" },
       { id: "V-02", name: "Night Fisher 01", type: "longtail", service: "Squid Fishing", slot: "18:00 - 22:00", lat: 13.0200, lng: 100.1000, speed: "0.5 knots", captain: "Prasert", fuel: "92%", lifejacket: "8/8" },
@@ -1438,19 +1444,19 @@
 
     let mapMarkers = [];
     vessels.forEach(boat => {
-      const color = serviceColors[boat.service] || "#ffffff";
+      const color = serviceColors[boat.service] || "#0f2942";
       const marker = L.marker([boat.lat, boat.lng], { icon: createBoatMarker(color) }).addTo(map);
       marker.bindPopup(`
         <div class="vessel-info-popup">
           <h4>🛥️ ${boat.name}</h4>
-          <span style="font-size:10px; background:#1c2541; padding:2px 6px; border-radius:4px; color:#4cc9f0;">ID: ${boat.id}</span>
+          <span style="font-size:10px; background:#f5f7fa; border:1px solid #d9d9d9; padding:2px 6px; border-radius:4px; color:#2681ff; font-weight:bold;">ID: ${boat.id}</span>
           <table>
             <tr><td>กิจกรรม:</td><td class="val" style="color:${color};">${boat.service}</td></tr>
-            <tr><td>รอบเวลา:</td><td class="val" style="color:#4cc9f0;">${boat.slot}</td></tr>
+            <tr><td>รอบเวลา:</td><td class="val" style="color:#2681ff;">${boat.slot}</td></tr>
             <tr><td>ความเร็ว:</td><td class="val" id="sp-${boat.id}">${boat.speed}</td></tr>
             <tr><td>กัปตันเรือ:</td><td class="val">${boat.captain}</td></tr>
-            <tr><td>⛽ น้ำมันคงเหลือ:</td><td class="val" style="color:#00ff88;">${boat.fuel}</td></tr>
-            <tr><td>🤿 อุปกรณ์ชูชีพ:</td><td class="val" style="color:#ffd15c;">${boat.lifejacket} พร้อม</td></tr>
+            <tr><td>⛽ น้ำมันคงเหลือ:</td><td class="val" style="color:#52c41a;">${boat.fuel}</td></tr>
+            <tr><td>🤿 อุปกรณ์ชูชีพ:</td><td class="val" style="color:#ff9d00;">${boat.lifejacket} พร้อม</td></tr>
           </table>
           <button class="popup-btn" onclick="startBooking('${boat.name}', '฿2,800', '${boat.slot}')">จองรอบเรือนี้</button>
         </div>
@@ -1461,11 +1467,9 @@
     /* REAL-TIME AUTO-UPDATE ENGINE (ขยับพิกัดสุ่มเฉพาะพื้นที่หาดเจ้าสำราญ ทุก 3 วินาที) */
     setInterval(() => {
       mapMarkers.forEach(item => {
-        // Random step movement
         let deltaLat = (Math.random() - 0.5) * 0.0025;
         let deltaLng = (Math.random() - 0.5) * 0.0025;
 
-        // Apply Geofence boundaries for Hat Chao Samran coast
         let newLat = item.boat.lat + deltaLat;
         let newLng = item.boat.lng + deltaLng;
 
@@ -1492,7 +1496,7 @@
 
     function triggerEmergencySOS() {
       const sosVessel = mapMarkers[0];
-      sosVessel.marker.setIcon(createBoatMarker("#ff4757", "sos-pulse-marker"));
+      sosVessel.marker.setIcon(createBoatMarker("#ff4d4f", "sos-pulse-marker"));
       sosVessel.marker.openPopup();
       map.setView([sosVessel.boat.lat, sosVessel.boat.lng], 13);
 
@@ -1535,10 +1539,10 @@
       const div = L.DomUtil.create('div', 'map-legend');
       div.innerHTML = `
         <h5>Fleet Color Key</h5>
-        <div class="legend-item"><span class="legend-color" style="background:#00ff88;"></span> Whale Spotting</div>
-        <div class="legend-item"><span class="legend-color" style="background:#00d2ff;"></span> Squid Fishing</div>
-        <div class="legend-item"><span class="legend-color" style="background:#ff9f43;"></span> Sunset Cruise</div>
-        <div class="legend-item"><span class="legend-color" style="background:#ffd15c;"></span> Island Transfer</div>
+        <div class="legend-item"><span class="legend-color" style="background:#52c41a;"></span> Whale Spotting</div>
+        <div class="legend-item"><span class="legend-color" style="background:#2681ff;"></span> Squid Fishing</div>
+        <div class="legend-item"><span class="legend-color" style="background:#ff9d00;"></span> Sunset Cruise</div>
+        <div class="legend-item"><span class="legend-color" style="background:#722ed1;"></span> Island Transfer</div>
       `;
       return div;
     };
