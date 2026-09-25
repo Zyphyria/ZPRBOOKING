@@ -23,12 +23,12 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     body { background-color: #f5f7fa; color: #0f2942; line-height: 1.5; scroll-behavior: smooth; }
     
-    /* Header - Trip.com Light Style */
+    /* Header - Trip.com Modern Style */
     header { 
       background: #ffffff; 
       position: sticky; top: 0; z-index: 1000; 
       border-bottom: 1px solid #e5e9f0; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04); 
     }
     .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; width: 100%; }
     .brand-section { display: flex; align-items: center; gap: 10px; }
@@ -56,19 +56,68 @@
     .btn-login { background: #2681ff; color: #ffffff; padding: 8px 18px; border-radius: 20px; font-weight: 700; border: none; cursor: pointer; font-size: 13.5px; box-shadow: 0 4px 12px rgba(38, 129, 255, 0.25); transition: all 0.2s; }
     .btn-login:hover { background: #0066ff; transform: translateY(-1px); }
 
-    .user-profile { display: none; align-items: center; gap: 8px; background: #f0f5ff; padding: 4px 10px; border-radius: 20px; border: 1px solid #d0e1ff; }
-    .user-avatar { width: 28px; height: 28px; background: #2681ff; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
-    .user-name-text { color: #0f2942; font-size: 13px; font-weight: 600; }
-    .btn-profile-edit, .btn-my-bookings { background: #ffffff; color: #2681ff; border: 1px solid #2681ff; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
-    .btn-profile-edit:hover, .btn-my-bookings:hover { background: #2681ff; color: #ffffff; }
-    .btn-logout { background: #ff4d4f; color: white; border: none; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    /* Trip.com Profile Menu & Dropdown Styling */
+    .user-profile-wrapper { position: relative; display: none; }
+    .user-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 12px;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid transparent;
+    }
+    .user-profile-card:hover { background: #f0f5ff; border-color: #d0e1ff; }
+    .user-avatar { width: 34px; height: 34px; background: #0f2942; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+    .user-info-text { display: flex; flex-direction: column; text-align: left; }
+    .user-name-text { color: #0f2942; font-size: 13px; font-weight: 700; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .user-badges { display: flex; align-items: center; gap: 6px; font-size: 10.5px; }
+    .rank-badge { background: #eaf2ff; color: #2681ff; padding: 1px 6px; border-radius: 8px; font-weight: bold; }
+    .coin-badge { color: #ff9d00; font-weight: bold; display: flex; align-items: center; gap: 2px; }
 
-    /* Hero Banner */
-    .hero { background: linear-gradient(135deg, #0f2942 0%, #1d4370 50%, #2681ff 100%); padding: 48px 24px 80px; text-align: center; color: #ffffff; position: relative; }
-    .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-    .hero p { color: #eaf2ff; font-size: 16px; opacity: 0.9; }
+    /* Trip.com User Dropdown Panel */
+    .user-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 250px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 41, 66, 0.15);
+      border: 1px solid #e5e9f0;
+      z-index: 1100;
+      overflow: hidden;
+      padding: 8px 0;
+      animation: fadeIn 0.2s ease-out;
+    }
+    .user-dropdown-menu.show { display: block; }
+    .dropdown-header { padding: 12px 16px; border-bottom: 1px solid #f0f5ff; background: #fafcff; }
+    .dropdown-header h5 { font-size: 14px; color: #0f2942; font-weight: 700; margin-bottom: 4px; }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      color: #0f2942;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dropdown-item:hover { background: #f0f5ff; color: #2681ff; }
+    .dropdown-divider { height: 1px; background: #e5e9f0; margin: 6px 0; }
+    .dropdown-item.logout-text { color: #ff4d4f; }
+    .dropdown-item.logout-text:hover { background: #fff1f0; }
 
-    /* Weather Bar (Fixed Overlap) */
+    /* Hero Banner - Trip.com Exact Blue Gradient Style */
+    .hero { background: linear-gradient(135deg, #1852bd 0%, #2681ff 50%, #4092ff 100%); padding: 52px 24px 84px; text-align: center; color: #ffffff; position: relative; }
+    .hero h1 { font-size: 38px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .hero p { color: #eaf2ff; font-size: 15px; opacity: 0.95; }
+
+    /* Weather Bar */
     .weather-bar { 
       background: #ffffff; 
       border: 1px solid #e5e9f0; 
@@ -91,7 +140,7 @@
     .weather-status { background: #e6f7ff; color: #0066ff; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #91d5ff; }
     .user-ip-location { background: #f6ffed; color: #52c41a; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #b7eb8f; }
 
-    /* Search Box Container */
+    /* Search Box Container Floating Style */
     .search-wrapper { max-width: 1100px; margin: 0 auto 40px; padding: 0 24px; position: relative; z-index: 20; }
     .search-card { background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid #e5e9f0; box-shadow: 0 12px 32px rgba(15, 41, 66, 0.08); }
     .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; margin-bottom: 20px; }
@@ -117,8 +166,6 @@
 
     .card p { color: #595959; font-size: 13px; margin-bottom: 12px; line-height: 1.5; }
     .capacity-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; display: inline-block; margin-bottom: 10px; font-weight: 600; }
-    
-    /* Price Tag Changed to Black (#0f2942) */
     .price-tag { font-size: 20px; color: #0f2942; font-weight: 800; margin-bottom: 12px; }
     .slot-title { font-size: 11px; color: #8c8c8c; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
     .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
@@ -168,6 +215,14 @@
     .modal-form { display: flex; flex-direction: column; gap: 12px; }
     .close-btn { margin-top: 14px; background: #f5f7fa; color: #595959; border: 1px solid #d9d9d9; padding: 8px 16px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
     .close-btn:hover { background: #e5e9f0; }
+
+    /* Trip.com Account Dashboard Layout */
+    .trip-account-card { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+    .trip-account-card h4 { font-size: 15px; color: #0f2942; margin-bottom: 12px; font-weight: 700; border-bottom: 1px solid #f5f7fa; padding-bottom: 8px; }
+    .account-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .account-info-box { background: #f8fafc; border: 1px solid #e5e9f0; padding: 12px; border-radius: 8px; font-size: 12.5px; }
+    .account-info-box label { color: #8c8c8c; font-size: 11px; display: block; margin-bottom: 2px; }
+    .account-info-box .val { color: #0f2942; font-weight: bold; font-size: 13px; }
 
     .ticket-card {
       background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%);
@@ -358,13 +413,46 @@
       </nav>
       <div class="auth-actions" style="display:flex; align-items:center; gap:12px;">
         <button class="btn-login" id="loginBtn" onclick="openAuthModal()">Log In / Register</button>
-        <div class="user-profile" id="userProfile">
-          <div class="user-avatar" id="userAvatar">U</div>
-          <span class="user-name-text" id="navUserName">User</span>
-          <button class="btn-my-bookings" onclick="openMyBookingsModal()">📋 การจองของฉัน</button>
-          <button class="btn-profile-edit" onclick="openProfileModal()">⚙️ บัญชี</button>
-          <button class="btn-logout" onclick="logout()">Logout</button>
+        
+        <!-- Trip.com User Profile Card with Dropdown -->
+        <div class="user-profile-wrapper" id="userProfileWrapper">
+          <div class="user-profile-card" onclick="toggleUserDropdown(event)">
+            <div class="user-avatar" id="userAvatar">N</div>
+            <div class="user-info-text">
+              <span class="user-name-text" id="navUserName">User</span>
+              <div class="user-badges">
+                <span class="rank-badge">💎 Silver</span>
+                <span class="coin-badge">🪙 4 Coins</span>
+              </div>
+            </div>
+            <span style="font-size: 11px; color:#8c8c8c;">❯</span>
+          </div>
+
+          <!-- Dropdown Panel (Trip.com Design) -->
+          <div class="user-dropdown-menu" id="userDropdownMenu">
+            <div class="dropdown-header">
+              <h5 id="dropdownName">User</h5>
+              <span style="font-size:11px; color:#8c8c8c;">Trip Member Account</span>
+            </div>
+            <div class="dropdown-item" onclick="openMyBookingsModal(); hideUserDropdown();">
+              <span>📋</span> My bookings
+            </div>
+            <div class="dropdown-item" onclick="openProfileModal(); hideUserDropdown();">
+              <span>👤</span> Manage my account
+            </div>
+            <div class="dropdown-item" onclick="showToast('Promo Code', 'ไม่มีคูปองส่วนลดในขณะนี้', 'info'); hideUserDropdown();">
+              <span>🏷️</span> Promo codes
+            </div>
+            <div class="dropdown-item" onclick="showToast('Saved', 'รายการที่บันทึกไว้', 'info'); hideUserDropdown();">
+              <span>🔖</span> Saved
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item logout-text" onclick="logout(); hideUserDropdown();">
+              <span>🚪</span> Sign out
+            </div>
+          </div>
         </div>
+
         <button onclick="openAdminAuthModal()" style="background:#ff9f43; border:none; color:#ffffff; font-weight:bold; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">🔑 Admin</button>
       </div>
     </div>
@@ -668,36 +756,73 @@
     </div>
   </div>
 
+  <!-- Trip.com Manage Account Dashboard Modal -->
   <div class="modal" id="profileModal">
-    <div class="modal-content">
-      <h3 style="color:#0f2942; margin-bottom:16px;">⚙️ แก้ไขข้อมูลบัญชี (Account Settings)</h3>
-      <div class="modal-form">
-        <div class="input-group">
-          <label>Username (แก้ไขไม่ได้)</label>
-          <input type="text" id="editUsername" disabled style="opacity: 0.6; cursor: not-allowed;">
-        </div>
-        <div class="input-group">
-          <label>ชื่อจริง - นามสกุล</label>
-          <div style="display:flex; gap:6px;">
-            <input type="text" id="editFName" placeholder="ชื่อจริง">
-            <input type="text" id="editLName" placeholder="นามสกุล">
+    <div class="modal-content" style="max-width: 620px;">
+      <h3 style="color:#0f2942; margin-bottom:16px; font-weight:800;">👤 Manage My Account</h3>
+      
+      <!-- Security Section -->
+      <div class="trip-account-card">
+        <h4>Account Security</h4>
+        <div class="account-row-grid">
+          <div class="account-info-box">
+            <label>✉️ Linked Email</label>
+            <span class="val" id="dispEmail">email@example.com</span>
+          </div>
+          <div class="account-info-box">
+            <label>📞 Phone Number</label>
+            <span class="val" id="dispPhone">081-XXX-XXXX</span>
           </div>
         </div>
-        <div class="input-group">
-          <label>Email</label>
-          <input type="email" id="editEmail" placeholder="email@gmail.com">
-        </div>
-        <div class="input-group">
-          <label>เบอร์โทรศัพท์</label>
-          <input type="tel" id="editPhone" placeholder="0812345678">
-        </div>
-        <div class="input-group">
-          <label>Password ใหม่</label>
-          <input type="password" id="editPass" placeholder="กรอกรหัสผ่านใหม่">
-        </div>
-        <button class="btn-action" id="btnSaveProfile" style="margin-top:10px;" onclick="handleSaveProfile()">บันทึกการเปลี่ยนแปลง</button>
       </div>
-      <button class="close-btn" onclick="closeProfileModal()">ยกเลิก</button>
+
+      <!-- Member Profile Section -->
+      <div class="trip-account-card">
+        <h4>Member Profile</h4>
+        <div class="account-info-box" style="margin-bottom:10px;">
+          <label>👤 Full Name</label>
+          <span class="val" id="dispFullName">คุณลูกค้า</span>
+        </div>
+        <div class="account-row-grid">
+          <div class="account-info-box">
+            <label>🆔 Username</label>
+            <span class="val" id="dispUsername">zpr_user</span>
+          </div>
+          <div class="account-info-box">
+            <label>🏆 Membership Tier</label>
+            <span class="val" style="color:#2681ff;">Silver Member</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Form Section -->
+      <div class="trip-account-card">
+        <h4>Update Account Info</h4>
+        <div class="modal-form">
+          <div class="input-group">
+            <label>ชื่อจริง - นามสกุล</label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="editFName" placeholder="ชื่อจริง">
+              <input type="text" id="editLName" placeholder="นามสกุล">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="editEmail" placeholder="email@gmail.com">
+          </div>
+          <div class="input-group">
+            <label>เบอร์โทรศัพท์</label>
+            <input type="tel" id="editPhone" placeholder="0812345678">
+          </div>
+          <div class="input-group">
+            <label>Password ใหม่</label>
+            <input type="password" id="editPass" placeholder="กรอกรหัสผ่านใหม่">
+          </div>
+          <button class="btn-action" id="btnSaveProfile" style="margin-top:10px;" onclick="handleSaveProfile()">บันทึกการเปลี่ยนแปลง</button>
+        </div>
+      </div>
+
+      <button class="close-btn" onclick="closeProfileModal()">ปิดหน้าต่าง</button>
     </div>
   </div>
 
@@ -1025,6 +1150,21 @@
 
     function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
     function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+
+    /* Dropdown UI Toggle Functions */
+    function toggleUserDropdown(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('userDropdownMenu');
+      menu.classList.toggle('show');
+    }
+
+    function hideUserDropdown() {
+      document.getElementById('userDropdownMenu').classList.remove('show');
+    }
+
+    window.addEventListener('click', function() {
+      hideUserDropdown();
+    });
     
     function switchAuthTab(tab) {
       if(tab === 'login') {
@@ -1042,7 +1182,11 @@
 
     function openProfileModal() {
       if(!currentUser) return;
-      document.getElementById('editUsername').value = currentUser.username || "";
+      document.getElementById('dispEmail').innerText = currentUser.email || "email@example.com";
+      document.getElementById('dispPhone').innerText = currentUser.phone || "081-XXX-XXXX";
+      document.getElementById('dispFullName').innerText = currentUser.name || "คุณลูกค้า";
+      document.getElementById('dispUsername').innerText = currentUser.username || "zpr_user";
+
       const names = (currentUser.name || "").split(" ");
       document.getElementById('editFName').value = names[0] || "";
       document.getElementById('editLName').value = names.slice(1).join(" ") || "";
@@ -1231,15 +1375,16 @@
 
     function showLoggedInState() {
       document.getElementById('loginBtn').style.display = 'none';
-      document.getElementById('userProfile').style.display = 'flex';
+      document.getElementById('userProfileWrapper').style.display = 'block';
       document.getElementById('navUserName').innerText = currentUser.name;
+      document.getElementById('dropdownName').innerText = currentUser.name;
       document.getElementById('userAvatar').innerText = (currentUser.name || "U").charAt(0).toUpperCase();
     }
 
     function logout() {
       currentUser = null;
       document.getElementById('loginBtn').style.display = 'block';
-      document.getElementById('userProfile').style.display = 'none';
+      document.getElementById('userProfileWrapper').style.display = 'none';
       showToast("ออกจากระบบ", "ออกจากระบบเรียบร้อยแล้ว", "success");
     }
 
