@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZPRBOOKING.COM | Hat Chao Samran Marine Charters</title>
+  
+  <!-- Leaflet CSS for Map Tracking -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- EmailJS Library Integration -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+     (function(){
+        emailjs.init("TBiTFnSwjv7HfmAgq");
+     })();
+  </script>
+
+  <!-- html2canvas Library for E-Ticket Image Download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: #0d1b2a; color: #e0e1dd; line-height: 1.5; scroll-behavior: smooth; }
+    
+    header { 
+      background: rgba(11, 19, 43, 0.95); 
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky; top: 0; z-index: 1000; 
+      border-bottom: 1px solid rgba(76, 201, 240, 0.2); 
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5); 
+    }
+    .header-container { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; width: 100%; }
+    .brand-section { display: flex; align-items: center; gap: 12px; }
+    .logo { font-size: 24px; font-weight: 900; color: #4cc9f0; text-decoration: none; letter-spacing: 1px; text-shadow: 0 0 12px rgba(76, 201, 240, 0.4); }
+    .badge-academic { background: rgba(28, 37, 65, 0.9); color: #4cc9f0; font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(76, 201, 240, 0.5); font-weight: 600; }
+    
+    .nav-menu { display: flex; gap: 12px; list-style: none; align-items: center; }
+    .nav-menu li a { 
+      color: #e0e1dd; 
+      font-size: 13.5px; 
+      font-weight: 600; 
+      text-decoration: none; 
+      padding: 8px 16px; 
+      border-radius: 10px; 
+      transition: all 0.25s ease; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      background: rgba(28, 37, 65, 0.85);
+      border: 1px solid rgba(76, 201, 240, 0.45);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+    .nav-menu li a:hover { 
+      color: #ffffff; 
+      background: rgba(76, 201, 240, 0.25); 
+      border-color: #4cc9f0;
+      box-shadow: 0 0 16px rgba(76, 201, 240, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-login { background: linear-gradient(135deg, #4cc9f0 0%, #3a86ff 100%); color: #0b132b; padding: 8px 20px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; font-size: 13.5px; box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3); transition: transform 0.2s; }
+    .btn-login:hover { transform: translateY(-2px); }
+
+    .user-profile { display: none; align-items: center; gap: 8px; background: rgba(28, 37, 65, 0.9); padding: 5px 12px; border-radius: 24px; border: 1px solid rgba(76, 201, 240, 0.4); }
+    .user-avatar { width: 28px; height: 28px; background: #4cc9f0; color: #0b132b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
+    .user-name-text { color: #ffffff; font-size: 12.5px; font-weight: 600; }
+    .btn-profile-edit, .btn-my-bookings { background: transparent; color: #4cc9f0; border: 1px solid #4cc9f0; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    .btn-profile-edit:hover, .btn-my-bookings:hover { background: #4cc9f0; color: #0b132b; }
+    .btn-logout { background: #ff4757; color: white; border: none; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+
+    .hero { background: linear-gradient(180deg, #0b132b 0%, #1c2541 100%); padding: 56px 24px 76px; text-align: center; }
+    .hero h1 { font-size: 38px; color: #ffffff; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .hero p { color: #4cc9f0; font-size: 16px; }
+
+    .weather-bar { 
+      background: linear-gradient(135deg, #1c2541 0%, #0b132b 100%); 
+      border: 1px solid #3a506b; 
+      border-radius: 12px;
+      padding: 12px 24px; 
+      font-size: 13px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      color: #4cc9f0; 
+      max-width: 1200px;
+      margin: -24px auto 36px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .weather-info { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .weather-status { background: rgba(0, 255, 136, 0.15); color: #00ff88; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #00ff88; }
+    .user-ip-location { background: rgba(76, 201, 240, 0.15); color: #4cc9f0; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; border: 1px solid #4cc9f0; }
+
+    .search-wrapper { max-width: 1200px; margin: 0 auto 40px; padding: 0 24px; }
+    .search-card { background: #1c2541; border-radius: 16px; padding: 24px; border: 1px solid #3a506b; box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+    .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; margin-bottom: 20px; }
+    .input-group { display: flex; flex-direction: column; gap: 6px; }
+    .input-group label { font-size: 12px; color: #4cc9f0; font-weight: 600; text-transform: uppercase; }
+    .input-group select, .input-group input { padding: 10px; background-color: #0b132b; border: 1px solid #3a506b; border-radius: 8px; color: #ffffff; font-size: 14px; outline: none; }
+    .btn-action { width: 100%; padding: 12px; background-color: #4cc9f0; color: #0b132b; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; }
+    .btn-action:hover { background-color: #3a86ff; color: #ffffff; }
+
+    .container { max-width: 1200px; margin: 0 auto 48px; padding: 0 24px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+    
+    .card { background: #1c2541; border-radius: 12px; padding: 22px; border: 1px solid #3a506b; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .card h3 { color: #ffffff; margin-bottom: 4px; font-size: 18px; }
+    .rating-badge { color: #ffd15c; font-size: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
+    
+    .eco-safety-box { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .eco-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: rgba(0, 200, 83, 0.15); color: #00e676; border: 1px solid #00e676; font-weight: bold; }
+    .safety-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; background: rgba(76, 201, 240, 0.15); color: #4cc9f0; border: 1px solid #4cc9f0; font-weight: bold; }
+
+    .card p { color: #c5d3e8; font-size: 13px; margin-bottom: 12px; }
+    .capacity-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid #00ff88; display: inline-block; margin-bottom: 10px; }
+    .price-tag { font-size: 18px; color: #4cc9f0; font-weight: bold; margin-bottom: 12px; }
+    .slot-title { font-size: 11px; color: #4cc9f0; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .time-slots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .slot-badge { font-size: 11px; padding: 4px 8px; background: #0b132b; border: 1px solid #3a506b; color: #c5d3e8; border-radius: 4px; }
+
+    .policy-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .policy-box { background: #1c2541; border: 1px solid #3a506b; border-radius: 12px; padding: 18px; }
+    .policy-box h4 { color: #4cc9f0; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .policy-box p { font-size: 13px; color: #c5d3e8; }
+
+    .tracker-card { background: #1c2541; border: 1px solid #3a506b; border-radius: 16px; padding: 24px; margin-top: 16px; }
+    .tracker-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .tracker-header h3 { color: #4cc9f0; }
+    .live-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4cc9f0; }
+    .pulse-dot { width: 10px; height: 10px; background-color: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+
+    #vesselMap { width: 100%; height: 600px; border-radius: 12px; border: 1px solid #3a506b; z-index: 1; }
+
+    /* Custom Leaflet Dark Popup Fix */
+    .leaflet-popup-content-wrapper {
+      background: #0b132b !important;
+      color: #ffffff !important;
+      border: 1px solid #4cc9f0;
+      border-radius: 10px !important;
+      padding: 6px 10px !important;
+    }
+    .leaflet-popup-tip { background: #0b132b !important; }
+    .leaflet-popup-content { margin: 10px !important; width: 235px !important; }
+
+    .vessel-info-popup h4 { color: #4cc9f0; margin-bottom: 4px; font-size: 14px; }
+    .vessel-info-popup table { width: 100%; font-size: 12px; margin-top: 6px; border-collapse: collapse; }
+    .vessel-info-popup td { padding: 3px 0; color: #c5d3e8; }
+    .vessel-info-popup td.val { color: #ffffff; font-weight: bold; text-align: right; }
+    .popup-btn { width: 100%; margin-top: 10px; padding: 6px; background: #4cc9f0; color: #0b132b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+    .map-legend { background: rgba(11, 19, 43, 0.9); border: 1px solid #3a506b; padding: 10px 14px; border-radius: 8px; color: #ffffff; font-size: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .map-legend h5 { color: #4cc9f0; margin-bottom: 6px; font-size: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .legend-color { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 2000; }
+    .modal-content { background: #1c2541; padding: 28px; border-radius: 12px; border: 1px solid #3a506b; max-width: 550px; width: 92%; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .modal-tabs { display: flex; gap: 12px; border-bottom: 1px solid #3a506b; margin-bottom: 20px; }
+    .modal-tab { padding: 8px; background: none; border: none; color: #8d99ae; font-weight: 700; cursor: pointer; border-bottom: 2px solid transparent; }
+    .modal-tab.active { color: #4cc9f0; border-bottom-color: #4cc9f0; }
+    .modal-form { display: flex; flex-direction: column; gap: 10px; }
+    .close-btn { margin-top: 14px; background: #ff4757; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+
+    /* E-Ticket Styling */
+    .ticket-card {
+      background: linear-gradient(135deg, #0b132b 0%, #1c2541 100%);
+      border: 2px dashed #4cc9f0;
+      border-radius: 16px;
+      padding: 24px;
+      color: #fff;
+      margin-top: 12px;
+      position: relative;
+    }
+    .ticket-header { border-bottom: 1px solid #3a506b; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .ticket-body table { width: 100%; font-size: 13px; border-collapse: collapse; margin-bottom: 16px; }
+    .ticket-body td { padding: 6px 0; color: #c5d3e8; }
+    .ticket-body td.t-val { color: #ffffff; font-weight: bold; text-align: right; }
+    .ticket-qr-area { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; max-width: 160px; margin: 0 auto; }
+
+    @media print {
+      body * { visibility: hidden; }
+      #eTicketModal, #eTicketModal * { visibility: visible; }
+      #eTicketModal { position: absolute; left: 0; top: 0; width: 100%; background: #0b132b; }
+      .close-btn, .btn-action { display: none !important; }
+    }
+
+    .analytics-bar-item { margin-bottom: 10px; }
+    .analytics-label { display: flex; justify-content: space-between; font-size: 12px; color: #c5d3e8; margin-bottom: 4px; }
+    .analytics-track { background: #0b132b; border-radius: 6px; height: 10px; overflow: hidden; border: 1px solid #3a506b; }
+    .analytics-fill { background: linear-gradient(90deg, #4cc9f0, #00ff88); height: 100%; width: 0%; transition: width 0.5s; }
+
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+    .data-table th, .data-table td { border: 1px solid #3a506b; padding: 8px 12px; text-align: left; }
+    .data-table th { background: #0b132b; color: #4cc9f0; }
+    .data-table tr:nth-child(even) { background: rgba(11,19,43,0.4); }
+
+    #customToastContainer {
+      position: fixed;
+      top: 80px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .custom-toast {
+      background: rgba(11, 19, 43, 0.95);
+      border: 1px solid #4cc9f0;
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      min-width: 300px;
+      max-width: 380px;
+      font-size: 13px;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .custom-toast.success { border-color: #00ff88; }
+    .custom-toast.error { border-color: #ff4757; }
+    .toast-icon { font-size: 18px; margin-top: 2px; }
+    .toast-body h5 { font-size: 14px; color: #4cc9f0; margin-bottom: 4px; }
+    .toast-body p { color: #c5d3e8; line-height: 1.4; }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* AI Chatbot Widget */
+    .ai-chatbot-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1800;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .ai-chat-btn {
+      background: linear-gradient(135deg, #a55eea, #4b7bec);
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 13.5px;
+      box-shadow: 0 8px 24px rgba(165, 94, 234, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s;
+    }
+    .ai-chat-btn:hover { transform: scale(1.05); }
+
+    .ai-chat-box {
+      display: none;
+      width: 360px;
+      height: 480px;
+      background: #1c2541;
+      border: 1px solid #a55eea;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+      margin-bottom: 12px;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .ai-chat-header {
+      background: linear-gradient(135deg, #0b132b, #1c2541);
+      padding: 12px 16px;
+      border-bottom: 1px solid #3a506b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #a55eea;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .ai-chat-body {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+    .chat-msg { padding: 9px 13px; border-radius: 12px; max-width: 88%; line-height: 1.45; word-break: break-word; }
+    .chat-msg.bot { background: #0b132b; color: #c5d3e8; border: 1px solid #3a506b; align-self: flex-start; }
+    .chat-msg.user { background: #a55eea; color: #ffffff; align-self: flex-end; }
+    
+    .quick-chip-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .quick-chip { background: #1c2541; border: 1px solid #4cc9f0; color: #4cc9f0; padding: 4px 8px; border-radius: 12px; font-size: 11px; cursor: pointer; }
+    .quick-chip:hover { background: #4cc9f0; color: #0b132b; }
+
+    .ai-chat-footer {
+      padding: 10px;
+      border-top: 1px solid #3a506b;
+      background: #0b132b;
+      display: flex;
+      gap: 6px;
+    }
+    .ai-chat-footer input {
+      flex: 1;
+      background: #1c2541;
+      border: 1px solid #3a506b;
+      border-radius: 6px;
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 12px;
+      outline: none;
+    }
+    .ai-chat-footer button {
+      background: #a55eea;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    footer { background: #0b132b; border-top: 1px solid #1c2541; padding: 36px 24px; font-size: 13px; color: #8d99ae; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; text-align: left; }
+    .footer-col h4 { color: #4cc9f0; font-size: 15px; margin-bottom: 10px; }
+    .footer-col p { color: #c5d3e8; font-size: 13px; margin-bottom: 6px; }
+    .maps-btn { display: inline-block; margin-top: 8px; background: #1c2541; border: 1px solid #4cc9f0; color: #4cc9f0; padding: 6px 12px; border-radius: 6px; font-weight: bold; text-decoration: none; font-size: 12px; }
+    .maps-btn:hover { background: #4cc9f0; color: #0b132b; }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Toast Container -->
+  <div id="customToastContainer"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-container">
+      <div class="brand-section">
+        <a href="#" class="logo">ZPRBOOKING.COM</a>
+        <span class="badge-academic">Thesis Prototype</span>
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#search-section">🔍 ค้นหาจองเรือ</a></li>
+          <li><a href="#charters">🛥️ บริการเรือทั้งหมด</a></li>
+          <li><a href="#vessel-tracker">📡 แผนที่ติดตาม GPS (20 ลำ)</a></li>
+        </ul>
+      </nav>
+      <div class="auth-actions" style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-login" id="loginBtn" onclick="openAuthModal()">Log In / Register</button>
+        <div class="user-profile" id="userProfile">
+          <div class="user-avatar" id="userAvatar">U</div>
+          <span class="user-name-text" id="navUserName">User</span>
+          <button class="btn-my-bookings" onclick="openMyBookingsModal()">📋 การจองของฉัน</button>
+          <button class="btn-profile-edit" onclick="openProfileModal()">⚙️ บัญชี</button>
+          <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+        <button onclick="openAdminAuthModal()" style="background:#ff9f43; border:none; color:#0b132b; font-weight:bold; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">🔑 Admin</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>ZPRBOOKING.COM</h1>
+    <p>ระบบจองเรือท่องเที่ยวและติดตามเรือ GPS Real-Time 20 ลำ ชายฝั่งหาดเจ้าสำราญ จ.เพชรบุรี</p>
+  </section>
+
+  <!-- Weather & IP Geolocation Info Bar -->
+  <div class="weather-bar">
+    <div class="weather-info">
+      <span>📍 <strong>หาดเจ้าสำราญ:</strong> <span id="liveTemp">☀️ กำลังโหลดอุณหภูมิสด...</span></span>
+      <span>🌊 ความเร็วลม/คลื่นสด: <strong id="liveWind">กำลังดึง API...</strong></span>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <div class="user-ip-location" id="userIpLocationBadge">📍 ตรวจจับพิกัดผู้ใช้...</div>
+      <div class="weather-status" id="liveSafetyBadge">🟢 HAT CHAO SAMRAN GPS CONNECTED</div>
+    </div>
+  </div>
+
+  <!-- Search Engine Section -->
+  <div class="search-wrapper" id="search-section">
+    <div class="search-card">
+      <h3 style="color:#4cc9f0; margin-bottom: 12px;">ค้นหาและกรองบริการเรือท่องเที่ยว</h3>
+
+      <div class="search-grid">
+        <div class="input-group">
+          <label>ประเภทเรือ (Boat Category)</label>
+          <select id="categoryFilter" onchange="filterCharters()">
+            <option value="all">เรือทั้งหมดทุกประเภท (All 20 Boats)</option>
+            <option value="speedboat">Speedboat (เรือสปีดโบ๊ท)</option>
+            <option value="longtail">Longtail Boat (เรือหางยาว)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>ประเภทกิจกรรม (Service Type)</label>
+          <select id="tripFilter" onchange="filterCharters()">
+            <option value="all">ทุกกิจกรรมบริการ (All Services)</option>
+            <option value="Whale Spotting">Whale Spotting (ชมวาฬบรูด้า)</option>
+            <option value="Squid Fishing">Squid Fishing (ตกหมึกกลางคืน)</option>
+            <option value="Coastal Cruise">Coastal Cruise (ล่องเรือชมวิว)</option>
+            <option value="Island Transfer">Island Transfer (รับส่งเกาะไผ่)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>วันที่ & รอบเดินทาง (Trip Date & Session)</label>
+          <select id="dateFilter"></select>
+        </div>
+      </div>
+      <button class="btn-action" onclick="filterCharters()">🔍 ค้นหาเรือว่าง (Filter Available Charters)</button>
+    </div>
+  </div>
+
+  <!-- Services & Booking Slots Section -->
+  <div class="container" id="charters">
+    <h2>รายการเรือและรอบบริการที่เปิดจอง (Featured Charters & Slots)</h2>
+    <div class="cards-grid" id="charterCardsContainer">
+      
+      <!-- Card 1 -->
+      <div class="card" data-category="speedboat" data-service="Whale Spotting">
+        <div>
+          <h3>Gulf Whale Spotting</h3>
+          <div class="rating-badge">⭐⭐⭐⭐⭐ 4.9 (48 รีวิว) • 💬 <i>"เจอวาฬบรูด้าตัวใหญ่มาก กัปตันบริการดี"</i></div>
+          
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Eco-Gold (Low Engine Noise)</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+
+          <p>ทริป 6 ชั่วโมง ล่องเรือชมวาฬบรูด้ากลางอ่าวไทยตอนบน หน้าหาดเจ้าสำราญ พร้อมไกด์นำทางท้องถิ่น</p>
+          <div class="capacity-tag" id="cap-1">💺 ที่นั่งคงเหลือ: 4 / 12 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">06:00 - 12:00</span>
+            <span class="slot-badge">12:30 - 18:30</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿4,200 / ลำ</div>
+          <button class="btn-action" onclick="startBooking('Gulf Whale Spotting (ชมวาฬบรูด้า)', '฿4,200', '06:00 - 12:00', 'cap-1')">จองรอบนี้ (Select & Reserve)</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" data-category="longtail" data-service="Squid Fishing">
+        <div>
+          <h3>Night Squid Fishing</h3>
+          <div class="rating-badge">⭐⭐⭐⭐☆ 4.7 (35 รีวิว) • 💬 <i>"ตกหมึกสดๆ ทำซาซิมิบนเรือฟินมาก"</i></div>
+          
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Eco-Green (LED Attraction)</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+
+          <p>กิจกรรมตกหมึกเรือหางยาว 4 ชั่วโมง ยามค่ำคืน ชายหาดเจ้าสำราญ อุปกรณ์ครบ พร้อมบริการทำซาซิมิสด</p>
+          <div class="capacity-tag" id="cap-2">💺 ที่นั่งคงเหลือ: 2 / 6 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">18:00 - 22:00</span>
+            <span class="slot-badge">22:00 - 02:00</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿2,800 / ลำ</div>
+          <button class="btn-action" onclick="startBooking('Night Squid Fishing (ตกหมึกกลางคืน)', '฿2,800', '18:00 - 22:00', 'cap-2')">จองรอบนี้ (Select & Reserve)</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card" data-category="longtail" data-service="Coastal Cruise">
+        <div>
+          <h3>Coastal Sunset Cruise</h3>
+          <div class="rating-badge">⭐⭐⭐⭐⭐ 5.0 (22 รีวิว) • 💬 <i>"บรรยากาศโรแมนติก เหมาะกับคู่รัก"</i></div>
+          
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Eco-Standard</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+
+          <p>ล่องเรือหางยาวเหมาลำ 2 ชั่วโมง ชมพระอาทิตย์ตกดินขอบฟ้าชายหาดเจ้าสำราญ เพชรบุรี</p>
+          <div class="capacity-tag" id="cap-3">💺 ที่นั่งคงเหลือ: 5 / 6 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">16:30 - 18:30</span>
+            <span class="slot-badge">17:00 - 19:00</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿1,500 / ลำ</div>
+          <button class="btn-action" onclick="startBooking('Coastal Sunset Cruise (ล่องเรือชมพระอาทิตย์ตก)', '฿1,500', '16:30 - 18:30', 'cap-3')">จองรอบนี้ (Select & Reserve)</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card" data-category="speedboat" data-service="Island Transfer">
+        <div>
+          <h3>Koh Phai Island Shuttle</h3>
+          <div class="rating-badge">⭐⭐⭐⭐☆ 4.8 (19 รีวิว) • 💬 <i>"เรือเร็ว ปลอดภัย ส่งตรงจุดดำน้ำ"</i></div>
+          
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Eco-Silver</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+
+          <p>เรือสปีดโบ๊ทรับ-ส่งไปกลับเกาะไผ่ ชายฝั่งเพชรบุรี ดำน้ำชมปะการังและหาดทรายส่วนตัว</p>
+          <div class="capacity-tag" id="cap-4">💺 ที่นั่งคงเหลือ: 8 / 12 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">08:00 - 12:00</span>
+            <span class="slot-badge">13:00 - 17:00</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿3,500 / ลำ</div>
+          <button class="btn-action" onclick="startBooking('Koh Phai Island Shuttle (รับส่งเกาะไผ่)', '฿3,500', '08:00 - 12:00', 'cap-4')">จองรอบนี้ (Select & Reserve)</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Policy & Safety Section -->
+  <div class="container">
+    <h2 style="margin-bottom:16px;">🛡️ ข้อกำหนดนโยบายและการดูแลความปลอดภัยในการเดินทาง</h2>
+    <div class="policy-wrapper">
+      <div class="policy-box">
+        <h4>🌊 นโยบายการยกเลิก & คืนเงิน</h4>
+        <p>หากเกิดพายุ คลื่นลมแรง หรือสภาพอากาศไม่ปลอดภัยต่อการออกเรือ ทางระบบยินดี **คืนเงินเต็มจำนวน 100%** หรือเลื่อนวันเดินทางได้ฟรีโดยไม่มีค่าใช้จ่ายเพิ่มเติม</p>
+      </div>
+      <div class="policy-box">
+        <h4>🤿 มาตรฐานความปลอดภัยบนเรือ</h4>
+        <p>นักท่องเที่ยวทุกคน **ต้องสวมเสื้อชูชีพตลอดเวลา** ที่อยู่บนเรือ มีอุปกรณ์ปฐมพยาบาลเบื้องต้น และมีสัญญาณ GPS ติดตามเรือ Real-Time เชื่อมต่อกับศูนย์ดูแลชายฝั่งตลอดทริป</p>
+      </div>
+      <div class="policy-box">
+        <h4>🎒 สิ่งของที่ควรเตรียมมา</h4>
+        <p>แนะนำให้เตรียมครีมกันแดด แว่นตากันแดด หมวก เสื้อผ้าสำหรับเปลี่ยนกรณีทำกิจกรรมดำน้ำ/ตกหมึก และ **ยาแก้แพ้/แก้คลื่นไส้** สำหรับผู้ที่เมารถหรือเมาเรือได้ง่าย</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Hat Chao Samran Live GPS Tracker -->
+  <div class="container" id="vessel-tracker">
+    <div class="tracker-card">
+      <div class="tracker-header">
+        <div>
+          <h3>📍 Live Hat Chao Samran Fleet Tracker (20 Active Vessels)</h3>
+          <p style="font-size: 13px; color: #c5d3e8;">แผนที่แสดงพิกัด GPS ตำแหน่งเรือท่องเที่ยว 20 ลำ ชายฝั่งหาดเจ้าสำราญ ขยับเคลื่อนที่สุ่มสด Real-Time (Auto-Update Every 3s)</p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+          <button onclick="focusHatChaoSamran()" style="background:#4cc9f0; color:#0b132b; border:none; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">
+            🎯 โฟกัสหาดเจ้าสำราญ
+          </button>
+          <button onclick="triggerEmergencySOS()" style="background:#ff4757; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:6px; box-shadow:0 0 10px rgba(255,71,87,0.5);">
+            🚨 SOS สัญญาณฉุกเฉิน (Simulate Rescue)
+          </button>
+          <div class="live-status">
+            <div class="pulse-dot"></div>
+            <span id="activeCountText">20 VESSELS ACTIVE ON MAP</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="vesselMap"></div>
+    </div>
+  </div>
+
+  <!-- Smart Conversational AI Assistant Chatbot -->
+  <div class="ai-chatbot-widget">
+    <div class="ai-chat-box" id="aiChatBox">
+      <div class="ai-chat-header">
+        <span>🤖 AI ผู้ช่วยท่องเที่ยว ZPRBOOKING</span>
+        <span style="cursor:pointer;" onclick="toggleAiChat()">✖</span>
+      </div>
+      <div class="ai-chat-body" id="aiChatBody">
+        <div class="chat-msg bot">
+          สวัสดีครับ! ผมเป็น AI ผู้ช่วยระบบจองเรือหาดเจ้าสำราญ สามารถสอบถามข้อมูลเรือ กิจกรรม ราคา หรือพิกัดท่าเรือได้เลยครับ 😊
+        </div>
+      </div>
+      <div class="ai-chat-footer">
+        <input type="text" id="aiChatInput" placeholder="ถามข้อมูลเรือ เช่น 'วาฬ', 'ตกหมึก', 'ราคา'..." onkeypress="if(event.key==='Enter') sendAiChatMessage()">
+        <button onclick="sendAiChatMessage()">ส่ง</button>
+      </div>
+    </div>
+    <button class="ai-chat-btn" onclick="toggleAiChat()">
+      💬 AI ผู้ช่วยตอบคำถาม 24 ชม.
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>ZPRBOOKING.COM</h4>
+        <p>ระบบบริหารจัดการจองเรือท่องเที่ยวและติดตามเรือ GPS ชายฝั่งหาดเจ้าสำราญ อำเภอเมืองเพชรบุรี จังหวัดเพชรบุรี</p>
+        <p style="font-size:11px; color:#8d99ae; margin-top:10px;">Computer Science Thesis Prototype © 2026</p>
+      </div>
+      <div class="footer-col">
+        <h4>📞 ศูนย์บริการ & ติดต่อฉุกเฉิน 24 ชม.</h4>
+        <p>📞 สายด่วนท่าเรือ: <strong>032-471-XXX, 081-987-XXXX</strong></p>
+        <p>✉️ Email: <strong>support@zprbooking.com</strong></p>
+        <p>💬 Line Official: <strong>@zprbooking</strong></p>
+      </div>
+      <div class="footer-col">
+        <h4>📍 พิกัดขึ้นเรือหลัก</h4>
+        <p>ท่าเรือเทียบเรือท่องเที่ยวหาดเจ้าสำราญ ต.หาดเจ้าสำราญ อ.เมืองเพชรบุรี จ.เพชรบุรี 76100</p>
+        <a href="https://maps.google.com/?q=Hat+Chao+Samran+Pier+Phetchaburi" target="_blank" class="maps-btn">📍 เปิดแผนที่นำทาง (Google Maps)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tabLogin" onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+        <button class="modal-tab" id="tabRegister" onclick="switchAuthTab('register')">สมัครสมาชิก</button>
+      </div>
+
+      <div class="modal-form" id="loginForm">
+        <div class="input-group">
+          <label>Username / Email</label>
+          <input type="text" id="loginUser" placeholder="username หรือ email">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••">
+        </div>
+        <button class="btn-action" id="btnLoginSubmit" style="margin-top:10px;" onclick="handleLogin()">Log In</button>
+      </div>
+
+      <div class="modal-form" id="registerForm" style="display:none;">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="regUser" placeholder="zpr_user">
+        </div>
+        <div class="input-group">
+          <label>ชื่อจริง - นามสกุล</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="regFName" placeholder="ชื่อจริง">
+            <input type="text" id="regLName" placeholder="นามสกุล">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Email (ยืนยันรหัส OTP จาก Email จริง)</label>
+          <div style="display:flex; gap:6px;">
+            <input type="email" id="regEmail" placeholder="yourname@gmail.com">
+            <button type="button" onclick="sendEmailOTP()" style="padding:0 8px; background:#1d3557; color:#4cc9f0; border:1px solid #4cc9f0; border-radius:6px; cursor:pointer; font-size:11px;">ส่ง OTP</button>
+          </div>
+          <input type="text" id="emailOtpInput" placeholder="กรอกรหัส OTP 6 หลักที่ส่งเข้า Email" style="margin-top:4px; display:none;">
+        </div>
+        <div class="input-group">
+          <label>เบอร์โทรศัพท์</label>
+          <input type="tel" id="regPhone" placeholder="0812345678">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="regPass" placeholder="••••••••">
+        </div>
+        <button class="btn-action" id="btnRegisterSubmit" style="margin-top:10px;" onclick="handleRegister()">ยืนยันลงทะเบียน</button>
+      </div>
+      <button class="close-btn" onclick="closeAuthModal()">ยกเลิก</button>
+    </div>
+  </div>
+
+  <div class="modal" id="profileModal">
+    <div class="modal-content">
+      <h3 style="color:#4cc9f0; margin-bottom:16px;">⚙️ แก้ไขข้อมูลบัญชี (Account Settings)</h3>
+      <div class="modal-form">
+        <div class="input-group">
+          <label>Username (แก้ไขไม่ได้)</label>
+          <input type="text" id="editUsername" disabled style="opacity: 0.6; cursor: not-allowed;">
+        </div>
+        <div class="input-group">
+          <label>ชื่อจริง - นามสกุล</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="editFName" placeholder="ชื่อจริง">
+            <input type="text" id="editLName" placeholder="นามสกุล">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" id="editEmail" placeholder="email@gmail.com">
+        </div>
+        <div class="input-group">
+          <label>เบอร์โทรศัพท์</label>
+          <input type="tel" id="editPhone" placeholder="0812345678">
+        </div>
+        <div class="input-group">
+          <label>Password ใหม่</label>
+          <input type="password" id="editPass" placeholder="กรอกรหัสผ่านใหม่">
+        </div>
+        <button class="btn-action" id="btnSaveProfile" style="margin-top:10px;" onclick="handleSaveProfile()">บันทึกการเปลี่ยนแปลง</button>
+      </div>
+      <button class="close-btn" onclick="closeProfileModal()">ยกเลิก</button>
+    </div>
+  </div>
+
+  <div class="modal" id="myBookingsModal">
+    <div class="modal-content">
+      <h3 style="color:#4cc9f0; margin-bottom:12px;">📋 ประวัติการจองเรือของฉัน (My Bookings)</h3>
+      <p style="font-size:12px; color:#c5d3e8;">รายการเรือที่ชำระเงินเรียบร้อยแล้ว ดึงตรงจากฐานข้อมูล</p>
+      
+      <div id="bookingsListContainer">
+        <p style="margin-top:16px; font-size:13px; color:#8d99ae;">กำลังโหลดข้อมูลการจอง...</p>
+      </div>
+
+      <button class="close-btn" onclick="closeMyBookingsModal()">ปิดหน้าต่าง</button>
+    </div>
+  </div>
+
+  <!-- E-Ticket / Digital Boarding Pass Modal -->
+  <div class="modal" id="eTicketModal">
+    <div class="modal-content" style="max-width:480px;">
+      <h3 style="color:#00ff88; text-align:center; margin-bottom:4px;">🎟️ DIGITAL BOARDING PASS</h3>
+      <p style="font-size:11px; color:#8d99ae; text-align:center;">ตั๋วขึ้นเรือท่องเที่ยวหาดเจ้าสำราญ (ZPRBOOKING.COM)</p>
+      
+      <div class="ticket-card" id="ticketCardPrint">
+        <div class="ticket-header">
+          <div>
+            <h4 style="color:#4cc9f0; font-size:16px;" id="tServiceTitle">Gulf Whale Spotting</h4>
+            <span style="font-size:10px; color:#8d99ae;">Hat Chao Samran Marine Charter</span>
+          </div>
+          <div style="text-align:right;">
+            <span style="font-size:11px; background:#00ff88; color:#0b132b; padding:2px 8px; border-radius:10px; font-weight:bold;">CONFIRMED</span>
+          </div>
+        </div>
+        
+        <div class="ticket-body">
+          <table>
+            <tr><td>รหัสการจอง (Ref Code):</td><td class="t-val" id="tRefCode" style="color:#ffd15c;">#ZPR-89210</td></tr>
+            <tr><td>ผู้เดินทาง:</td><td class="t-val" id="tPassengerName">คุณลูกค้า</td></tr>
+            <tr><td>วันที่เดินทาง & รอบเวลา:</td><td class="t-val" id="tTimeSlot">รอบเช้า (06:00 - 12:00)</td></tr>
+            <tr><td>ยอดชำระเงินเรียบร้อย:</td><td class="t-val" id="tAmount" style="color:#00ff88;">฿4,200</td></tr>
+            <tr><td>จุดขึ้นเรือ:</td><td class="t-val">ท่าเรือหาดเจ้าสำราญ จ.เพชรบุรี</td></tr>
+          </table>
+          
+          <div class="ticket-qr-area">
+            <img id="ticketQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=ZPR-PASS-CONFIRMED" style="width:100%; height:auto;">
+            <p style="font-size:9.5px; color:#0b132b; font-weight:bold; margin-top:4px;">สแกนเพื่อลงเรือ (Scan at Pier)</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; font-size:11px; color:#c5d3e8;">
+        💡 <strong>คำแนะนำ:</strong> กรุณาแสดงหน้าจอ E-Ticket นี้แก่กัปตันเรือ ณ ท่าเรือหาดเจ้าสำราญ ก่อนเวลาออกเรือ 15 นาที
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:12px;">
+        <button class="btn-action" style="background:#4cc9f0; color:#0b132b;" onclick="window.print()">🖨️ พิมพ์ตั๋ว</button>
+        <button class="btn-action" style="background:#00ff88; color:#0b132b;" onclick="downloadTicketImage()">📸 โหลดเป็นรูปภาพ</button>
+      </div>
+      <button class="close-btn" onclick="closeETicketModal()">ปิดตั๋ว</button>
+    </div>
+  </div>
+
+  <div class="modal" id="reviewModal">
+    <div class="modal-content" style="max-width:420px;">
+      <h3 style="color:#ffd15c; margin-bottom:12px; text-align:center;">📝 แบบประเมินความพึงพอใจทริปเรือ</h3>
+      <p style="font-size:12px; color:#c5d3e8; text-align:center; margin-bottom:16px;" id="reviewTripTitle">กิจกรรมบริการเรือ</p>
+      
+      <div class="modal-form">
+        <div class="input-group">
+          <label>ให้คะแนนความพึงพอใจ (Rating)</label>
+          <select id="reviewRatingSelect">
+            <option value="5">⭐⭐⭐⭐⭐ 5 ดาว (ประทับใจมากที่สุด)</option>
+            <option value="4">⭐⭐⭐⭐☆ 4 ดาว (ดีมาก)</option>
+            <option value="3">⭐⭐⭐☆☆ 3 ดาว (ปานกลาง)</option>
+            <option value="2">⭐⭐☆☆☆ 2 ดาว (ควรปรับปรุง)</option>
+            <option value="1">⭐☆☆☆☆ 1 ดาว (ไม่พอใจ)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>ความคิดเห็น / ข้อเสนอแนะการบริการกัปตัน</label>
+          <textarea id="reviewCommentText" rows="3" placeholder="เขียนความประทับใจเกี่ยวกับการบริการ อุปกรณ์เรือ หรือสภาพอากาศ..." style="padding:10px; background:#0b132b; border:1px solid #3a506b; border-radius:8px; color:#fff; font-size:13px; outline:none; resize:none;"></textarea>
+        </div>
+        <button class="btn-action" style="background:#ffd15c; color:#0b132b; margin-top:10px;" onclick="submitTripReview()">ส่งรีวิว & คะแนนประเมิน</button>
+      </div>
+      <button class="close-btn" onclick="closeReviewModal()">ยกเลิก</button>
+    </div>
+  </div>
+
+  <div class="modal" id="paymentModal">
+    <div class="modal-content" style="text-align: center;">
+      <h3 style="color:#4cc9f0;">ZPRBOOKING.COM Payment</h3>
+      <p style="font-size:13px; color:#c5d3e8; margin-top:4px;" id="payServiceTitle">สแกน QR Code ชำระเงินค่าเรือ</p>
+      
+      <div style="background:white; padding:12px; border-radius:12px; width:190px; margin:16px auto;">
+        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ZPRBOOKING-PROMPTPAY" style="width:100%;">
+      </div>
+      
+      <p style="font-size:20px; color:#00ff88; font-weight:bold;" id="payAmount">ยอดชำระ: ฿0</p>
+      <p style="font-size:11px; color:#8d99ae;">กำลังรอสัญญาณยืนยันการสแกนจ่ายจากแอปธนาคาร...</p>
+      
+      <button class="btn-action" style="margin-top:16px; background:#00ff88; color:#0b132b;" onclick="simulatePaymentSuccess()">
+        [Demo Simulation] จำลองการสแกนเงินสำเร็จ
+      </button>
+      <button class="close-btn" onclick="closePaymentModal()">ยกเลิกการจอง</button>
+    </div>
+  </div>
+
+  <div class="modal" id="adminAuthModal">
+    <div class="modal-content" style="max-width:380px;">
+      <h3 style="color:#ff9f43; margin-bottom:12px; text-align:center;">🔑 Admin Authorization</h3>
+      <div class="modal-form">
+        <div class="input-group">
+          <label>Admin Username</label>
+          <input type="text" id="adminUserVal" placeholder="Admin">
+        </div>
+        <div class="input-group">
+          <label>Admin Password</label>
+          <input type="password" id="adminPassVal" placeholder="••••••••">
+        </div>
+        <button class="btn-action" style="background:#ff9f43; color:#0b132b; margin-top:10px;" onclick="verifyAdminAccess()">เข้าสู่ระบบ Admin</button>
+      </div>
+      <button class="close-btn" onclick="closeAdminAuthModal()">ยกเลิก</button>
+    </div>
+  </div>
+
+  <div class="modal" id="adminModal">
+    <div class="modal-content" style="max-width: 780px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="color:#ff9f43;">🔑 Admin Analytics & Fleet Dashboard</h3>
+        <button onclick="exportBookingsCSV()" style="background:#00ff88; color:#0b132b; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;">📥 Export Data (CSV)</button>
+      </div>
+      
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:#0b132b; padding:12px; border-radius:8px; border:1px solid #3a506b;">
+          <span style="font-size:11px; color:#8d99ae;">ยอดขายรวมทั้งหมด</span>
+          <h2 style="color:#00ff88;" id="adminTotalSales">฿0</h2>
+        </div>
+        <div style="background:#0b132b; padding:12px; border-radius:8px; border:1px solid #3a506b;">
+          <span style="font-size:11px; color:#8d99ae;">จำนวนทริปการจองสำเร็จ</span>
+          <h2 style="color:#4cc9f0;" id="adminTotalCount">0 ทริป</h2>
+        </div>
+      </div>
+
+      <h4 style="color:#4cc9f0; margin-bottom:8px; font-size:13.5px;">📊 สถิติความนิยมกิจกรรมเรือ (Popularity Breakdown):</h4>
+      <div style="background:#0b132b; padding:14px; border-radius:8px; border:1px solid #3a506b; margin-bottom:16px;">
+        <div class="analytics-bar-item">
+          <div class="analytics-label"><span>🐋 Whale Spotting (ชมวาฬบรูด้า)</span><span id="statWhaleText">0 ทริป</span></div>
+          <div class="analytics-track"><div class="analytics-fill" id="statWhaleFill"></div></div>
+        </div>
+        <div class="analytics-bar-item">
+          <div class="analytics-label"><span>Squid Fishing (ตกหมึก)</span><span id="statSquidText">0 ทริป</span></div>
+          <div class="analytics-track"><div class="analytics-fill" id="statSquidFill"></div></div>
+        </div>
+        <div class="analytics-bar-item">
+          <div class="analytics-label"><span>Coastal Sunset Cruise (ชมพระอาทิตย์ตก)</span><span id="statSunsetText">0 ทริป</span></div>
+          <div class="analytics-track"><div class="analytics-fill" id="statSunsetFill"></div></div>
+        </div>
+        <div class="analytics-bar-item">
+          <div class="analytics-label"><span>Koh Phai Island Shuttle (เกาะไผ่)</span><span id="statIslandText">0 ทริป</span></div>
+          <div class="analytics-track"><div class="analytics-fill" id="statIslandFill"></div></div>
+        </div>
+      </div>
+
+      <h4 style="color:#ffffff; margin-bottom:8px; font-size:13.5px;">รายการการจองเรือล่าสุดในระบบ:</h4>
+      <div style="max-height: 200px; overflow-y: auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>เวลาที่จอง</th>
+              <th>ชื่อลูกค้า</th>
+              <th>บริการเรือ</th>
+              <th>รอบเวลา</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <tr><td colspan="5">กำลังโหลดข้อมูลการจอง...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="close-btn" onclick="closeAdminModal()">ปิดหน้าต่าง Admin</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqxuBIryYfww3Q-x6CSGV54tZTAcKyFvUqWq0QmlfLTe_1h5BSi_l15TVv9c18bQGSOA/exec";
+
+    function showToast(title, message, type = "success") {
+      const container = document.getElementById('customToastContainer');
+      const toast = document.createElement('div');
+      toast.className = `custom-toast ${type}`;
+      const icon = type === 'success' ? '🎉' : (type === 'error' ? '❌' : 'ℹ️');
+      toast.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-body"><h5>${title}</h5><p>${message}</p></div>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.transition = "opacity 0.4s, transform 0.4s";
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(100%)";
+        setTimeout(() => toast.remove(), 400);
+      }, 4500);
+    }
+
+    function sendToGoogleSheet(payload) {
+      const params = new URLSearchParams(payload).toString();
+      fetch(GOOGLE_SCRIPT_URL + "?" + params, { method: 'GET', mode: 'no-cors' });
+    }
+
+    /* Site-Specific AI Assistant */
+    function toggleAiChat() {
+      const box = document.getElementById('aiChatBox');
+      box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendAiChatMessage(presetText = null) {
+      const input = document.getElementById('aiChatInput');
+      const msg = presetText || input.value.trim();
+      if(!msg) return;
+
+      const body = document.getElementById('aiChatBody');
+      body.innerHTML += `<div class="chat-msg user">${msg}</div>`;
+      if(!presetText) input.value = "";
+      body.scrollTop = body.scrollHeight;
+
+      setTimeout(() => {
+        let reply = "";
+        const q = msg.toLowerCase().trim();
+
+        if (/^(yo|hi|hello|hey|ไง|หวัดดี|สวัสดี|ดีครับ|ดีค่ะ)$/i.test(q) || q.includes("สวัสดี")) {
+          reply = "สวัสดีครับ! ยินดีต้อนรับสู่ ZPRBOOKING สอบถามข้อมูลเรือ กิจกรรม ราคา หรือพิกัดขึ้นเรือได้เลยนะครับ 😊";
+        } 
+        else if (q.includes("วาฬ") || q.includes("whale")) {
+          reply = "🐋 <b>ทริปชมวาฬบรูด้า (Gulf Whale Spotting)</b><br>• เรือสปีดโบ๊ท 6 ชม. (฿4,200/ลำ)<br>• รอบบริการ: 06:00 - 12:00 น. และ 12:30 - 18:30 น.";
+        } 
+        else if (q.includes("ตกหมึก") || q.includes("squid")) {
+          reply = "🦑 <b>กิจกรรมตกหมึก (Night Squid Fishing)</b><br>• เรือหางยาว 4 ชม. (฿2,800/ลำ)<br>• มีบริการทำซาซิมิสดๆ ฟรีบนเรือ!";
+        } 
+        else if (q.includes("อาทิตย์") || q.includes("sunset") || q.includes("ชมวิว")) {
+          reply = "🌅 <b>Coastal Sunset Cruise</b><br>• เรือหางยาวเหมาลำ 2 ชม. (฿1,500/ลำ)<br>• รอบบริการ: 16:30 - 18:30 น.";
+        }
+        else if (q.includes("เกาะ") || q.includes("island")) {
+          reply = "🏝️ <b>Koh Phai Island Shuttle</b><br>• สปีดโบ๊ทรับ-ส่งไปกลับเกาะไผ่ (฿3,500/ลำ)<br>• รอบบริการ: 08:00 - 12:00 น.";
+        }
+        else if (q.includes("ราคา") || q.includes("กี่บาท") || q.includes("เท่าไหร่") || q.includes("ค่าเรือ")) {
+          reply = "💰 <b>สรุปราคาเรือเหมาลำ:</b><br>- ชมวาฬบรูด้า: ฿4,200<br>- ตกหมึกกลางคืน: ฿2,800<br>- ชมพระอาทิตย์ตก: ฿1,500<br>- รับส่งเกาะไผ่: ฿3,500";
+        } 
+        else if (q.includes("พิกัด") || q.includes("ขึ้นเรือ") || q.includes("ท่าเรือ")) {
+          reply = "📍 <b>พิกัดจุดขึ้นเรือหลัก:</b> ท่าเรือเทียบเรือท่องเที่ยวหาดเจ้าสำราญ ต.หาดเจ้าสำราญ อ.เมืองเพชรบุรี";
+        } 
+        else if (q.includes("ปลอดภัย") || q.includes("คืนเงิน") || q.includes("ยกเลิก")) {
+          reply = "🛡️ ZPRBOOKING มีนโยบาย Marine Safety หากเกิดพายุ คลื่นลมแรง ยินดีคืนเงิน 100% หรือเลื่อนวันเดินทางได้ฟรีทันที!";
+        } 
+        else {
+          reply = `ขออภัยครับ ผมเป็น AI สำหรับระบบจองเรือ ZPRBOOKING จึงตอบเฉพาะข้อมูลทริปเรือและบริการหาดเจ้าสำราญเท่านั้นครับ<br><br>💡 <b>ลองเลือกดูหัวข้อแนะนำด้านล่างนี้ได้เลยครับ:</b>
+            <div class="quick-chip-container">
+              <span class="quick-chip" onclick="sendAiChatMessage('ชมวาฬบรูด้า')">🐋 ชมวาฬบรูด้า</span>
+              <span class="quick-chip" onclick="sendAiChatMessage('ตกหมึกกลางคืน')">🦑 ตกหมึก</span>
+              <span class="quick-chip" onclick="sendAiChatMessage('สรุปราคาเรือ')">💰 ราคาเรือ</span>
+              <span class="quick-chip" onclick="sendAiChatMessage('พิกัดท่าเรือ')">📍 พิกัดท่าเรือ</span>
+            </div>`;
+        }
+
+        body.innerHTML += `<div class="chat-msg bot">${reply}</div>`;
+        body.scrollTop = body.scrollHeight;
+      }, 250);
+    }
+
+    /* IP Geolocation API */
+    async function fetchUserIpGeolocation() {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        if (data && data.city) {
+          document.getElementById('userIpLocationBadge').innerText = `📍 ผู้ใช้จาก ${data.city}, ${data.country_name}`;
+        }
+      } catch (e) {
+        document.getElementById('userIpLocationBadge').innerText = "📍 ต้อนรับนักท่องเที่ยว";
+      }
+    }
+    fetchUserIpGeolocation();
+
+    /* Real-Time Open-Meteo Weather API */
+    async function fetchLiveMarineWeather() {
+      try {
+        const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=13.0075&longitude=100.0610&current=temperature_2m,wind_speed_10m&timezone=Asia%2FBangkok");
+        const data = await res.json();
+        if(data && data.current) {
+          document.getElementById('liveTemp').innerHTML = `☀️ <strong>${data.current.temperature_2m}°C</strong> (สดจาก API)`;
+          document.getElementById('liveWind').innerText = `${data.current.wind_speed_10m} km/h (คลื่นสงบประมาณ 0.3 - 0.5m)`;
+        }
+      } catch(e) {
+        document.getElementById('liveTemp').innerText = "☀️ 29°C";
+        document.getElementById('liveWind').innerText = "0.5m (ปกติ)";
+      }
+    }
+    fetchLiveMarineWeather();
+
+    function initDateOptions() {
+      const select = document.getElementById('dateFilter');
+      select.innerHTML = '';
+      const today = new Date();
+      const sessions = ["รอบเช้า (06:00 - 12:00)", "รอบบ่าย (12:30 - 18:30)", "รอบค่ำ/ตกหมึก (18:00 - 22:00)"];
+
+      for (let i = 0; i < 5; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+        const dateStr = d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
+        
+        sessions.forEach(sess => {
+          const opt = document.createElement('option');
+          opt.value = `${dateStr} - ${sess}`;
+          opt.innerText = `📅 ${dateStr} [${sess}]`;
+          select.appendChild(opt);
+        });
+      }
+    }
+    initDateOptions();
+
+    let currentUser = null;
+    let currentSelectedTrip = {};
+    let generatedEmailOTP = null;
+    let currentCapElementId = null;
+    let rawAdminBookingsData = [];
+
+    function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+    function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+    
+    function switchAuthTab(tab) {
+      if(tab === 'login') {
+        document.getElementById('loginForm').style.display = 'flex';
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('tabLogin').classList.add('active');
+        document.getElementById('tabRegister').classList.remove('active');
+      } else {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'flex';
+        document.getElementById('tabRegister').classList.add('active');
+        document.getElementById('tabLogin').classList.remove('active');
+      }
+    }
+
+    function openProfileModal() {
+      if(!currentUser) return;
+      document.getElementById('editUsername').value = currentUser.username || "";
+      const names = (currentUser.name || "").split(" ");
+      document.getElementById('editFName').value = names[0] || "";
+      document.getElementById('editLName').value = names.slice(1).join(" ") || "";
+      document.getElementById('editEmail').value = currentUser.email || "";
+      document.getElementById('editPhone').value = currentUser.phone || "";
+      document.getElementById('editPass').value = currentUser.pass || "";
+      document.getElementById('profileModal').style.display = 'flex';
+    }
+
+    function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
+
+    async function handleSaveProfile() {
+      const fName = document.getElementById('editFName').value.trim();
+      const lName = document.getElementById('editLName').value.trim();
+      const email = document.getElementById('editEmail').value.trim();
+      const phone = document.getElementById('editPhone').value.trim() || "-";
+      const pass = document.getElementById('editPass').value.trim();
+
+      if(!fName || !lName || !email || !pass) return showToast("ข้อมูลไม่ครบ", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
+
+      const btn = document.getElementById('btnSaveProfile');
+      btn.innerText = "กำลังบันทึกข้อมูล..."; btn.disabled = true;
+
+      sendToGoogleSheet({
+        type: "UPDATE_PROFILE",
+        username: currentUser.username,
+        password: pass,
+        fullName: fName + ' ' + lName,
+        email: email,
+        phone: phone
+      });
+
+      currentUser.name = fName + ' ' + lName;
+      currentUser.email = email;
+      currentUser.phone = phone;
+      currentUser.pass = pass;
+
+      btn.innerText = "บันทึกการเปลี่ยนแปลง"; btn.disabled = false;
+      showToast("อัปเดตเรียบร้อย", "บันทึกการแก้ไขข้อมูลบัญชีเรียบร้อยแล้ว", "success");
+      showLoggedInState();
+      closeProfileModal();
+    }
+
+    async function openMyBookingsModal() {
+      if(!currentUser) return;
+      document.getElementById('myBookingsModal').style.display = 'flex';
+      const container = document.getElementById('bookingsListContainer');
+      container.innerHTML = `<p style="margin-top:16px; font-size:13px; color:#8d99ae;">กำลังโหลดข้อมูลการจอง...</p>`;
+
+      try {
+        const res = await fetch(GOOGLE_SCRIPT_URL + `?action=getUserBookings&username=${encodeURIComponent(currentUser.username)}`);
+        const result = await res.json();
+
+        if (result.status === "success" && result.bookings.length > 0) {
+          let html = `<table class="data-table"><thead><tr><th>วันที่จอง</th><th>เรือ/กิจกรรม</th><th>รอบเวลา</th><th>สถานะ & ตั๋ว</th></tr></thead><tbody>`;
+          result.bookings.forEach(b => {
+            html += `<tr>
+              <td>${b.date}</td>
+              <td>${b.service}</td>
+              <td>${b.slot}</td>
+              <td>
+                <span style="color:#00ff88;">${b.status}</span><br>
+                <button onclick="showETicket('${b.service}', '${b.slot}', '฿2,800')" style="margin-top:4px; background:#4cc9f0; color:#0b132b; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">🎟️ ดูตั๋ว (E-Ticket)</button>
+                <button onclick="openReviewModal('${b.service}')" style="margin-top:4px; background:#ffd15c; color:#0b132b; border:none; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">⭐ รีวิว</button>
+              </td>
+            </tr>`;
+          });
+          html += `</tbody></table>`;
+          container.innerHTML = html;
+        } else {
+          container.innerHTML = `<p style="margin-top:16px; color:#c5d3e8;">ยังไม่พบประวัติการจองเรือของคุณ</p>`;
+        }
+      } catch(e) {
+        container.innerHTML = `<p style="margin-top:16px; color:#ff4757;">ไม่สามารถเชื่อมต่อฐานข้อมูลได้</p>`;
+      }
+    }
+
+    function closeMyBookingsModal() { document.getElementById('myBookingsModal').style.display = 'none'; }
+
+    /* E-Ticket Display & Download System */
+    function showETicket(service, slot, price) {
+      const refCode = "#ZPR-" + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('tServiceTitle').innerText = service;
+      document.getElementById('tRefCode').innerText = refCode;
+      document.getElementById('tPassengerName').innerText = currentUser ? currentUser.name : "คุณลูกค้า";
+      document.getElementById('tTimeSlot').innerText = slot;
+      document.getElementById('tAmount').innerText = price;
+      
+      const qrData = `ZPRBOOKING|REF:${refCode}|USER:${currentUser ? currentUser.username : 'GUEST'}`;
+      document.getElementById('ticketQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(qrData)}`;
+      
+      document.getElementById('eTicketModal').style.display = 'flex';
+    }
+
+    function closeETicketModal() { document.getElementById('eTicketModal').style.display = 'none'; }
+
+    function downloadTicketImage() {
+      const card = document.getElementById('ticketCardPrint');
+      html2canvas(card, { backgroundColor: '#0b132b', scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `ZPR_ETicket_${new Date().getTime()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast("ดาวน์โหลดสำเร็จ", "บันทึกรูปตั๋ว E-Ticket เรียบร้อยแล้วครับ", "success");
+      });
+    }
+
+    let selectedReviewService = "";
+    function openReviewModal(serviceName) {
+      selectedReviewService = serviceName;
+      document.getElementById('reviewTripTitle').innerText = serviceName;
+      document.getElementById('reviewCommentText').value = "";
+      document.getElementById('reviewModal').style.display = 'flex';
+    }
+
+    function closeReviewModal() { document.getElementById('reviewModal').style.display = 'none'; }
+
+    function submitTripReview() {
+      const rating = document.getElementById('reviewRatingSelect').value;
+      const comment = document.getElementById('reviewCommentText').value.trim();
+
+      sendToGoogleSheet({
+        type: "POST_TRIP_REVIEW",
+        username: currentUser ? currentUser.username : "guest",
+        fullName: currentUser ? currentUser.name : "ผู้ใช้งาน",
+        service: selectedReviewService,
+        slot: `Rating: ${rating} Stars | Comment: ${comment || '-'}`
+      });
+
+      showToast("บันทึกรีวิวสำเร็จ", "ขอบพระคุณสำหรับแบบประเมินความพึงพอใจ ข้อมูลถูกส่งเข้าฐานข้อมูลแล้วครับ", "success");
+      closeReviewModal();
+    }
+
+    async function sendEmailOTP() {
+      const email = document.getElementById('regEmail').value.trim();
+      if(!email) return showToast("กรอก Email", "กรุณากรอก Email ก่อนกดส่ง OTP", "error");
+
+      generatedEmailOTP = Math.floor(100000 + Math.random() * 900000).toString();
+      document.getElementById('emailOtpInput').style.display = 'block';
+
+      emailjs.send("service_vf7kj91", "template_6w71s07", { to_email: email, otp_code: generatedEmailOTP }, "TBiTFnSwjv7HfmAgq")
+      .then(() => showToast("ส่ง OTP สำเร็จ", `จัดส่งรหัส OTP ไปยัง Email (${email}) เรียบร้อย`, "success"));
+    }
+
+    async function handleRegister() {
+      const username = document.getElementById('regUser').value.trim();
+      const fName = document.getElementById('regFName').value.trim();
+      const lName = document.getElementById('regLName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim() || "-";
+      const pass = document.getElementById('regPass').value.trim();
+      const emailOtp = document.getElementById('emailOtpInput').value.trim();
+
+      if(!username || !fName || !lName || !email || !pass) return showToast("ข้อมูลไม่ครบ", "กรุณากรอกข้อมูลให้ครบถ้วน", "error");
+      if(!generatedEmailOTP || emailOtp !== generatedEmailOTP) return showToast("OTP ไม่ถูกต้อง", "รหัส OTP ไม่ถูกต้อง", "error");
+
+      currentUser = { name: fName + ' ' + lName, email, phone, username, pass };
+      sendToGoogleSheet({ type: "USER_REGISTER", username, password: pass, fullName: fName + ' ' + lName, email, phone });
+
+      showToast("สมัครสมาชิกสำเร็จ", `ยินดีต้อนรับคุณ ${currentUser.name}`, "success");
+      showLoggedInState();
+      closeAuthModal();
+    }
+
+    async function handleLogin() {
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
+
+      if(!user || !pass) return showToast("ข้อมูลไม่ครบ", "กรุณากรอก Username และ Password", "error");
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL + `?action=login&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`);
+        const result = await response.json();
+
+        if(result.status === "success") {
+          currentUser = result.user;
+          showToast("เข้าสู่ระบบสำเร็จ", `ยินดีต้อนรับคุณ ${currentUser.name}`, "success");
+          showLoggedInState();
+          closeAuthModal();
+        } else {
+          showToast("เข้าสู่ระบบไม่สำเร็จ", "Username หรือ Password ไม่ถูกต้อง", "error");
+        }
+      } catch(err) {
+        showToast("การเชื่อมต่อล้มเหลว", "ไม่สามารถดึงข้อมูลได้", "error");
+      }
+    }
+
+    function showLoggedInState() {
+      document.getElementById('loginBtn').style.display = 'none';
+      document.getElementById('userProfile').style.display = 'flex';
+      document.getElementById('navUserName').innerText = currentUser.name;
+      document.getElementById('userAvatar').innerText = (currentUser.name || "U").charAt(0).toUpperCase();
+    }
+
+    function logout() {
+      currentUser = null;
+      document.getElementById('loginBtn').style.display = 'block';
+      document.getElementById('userProfile').style.display = 'none';
+      showToast("ออกจากระบบ", "ออกจากระบบเรียบร้อยแล้ว", "success");
+    }
+
+    function startBooking(title, priceStr, slot, capId) {
+      if(!currentUser) {
+        showToast("กรุณา Log In", "ต้องเข้าสู่ระบบก่อนทำการจองเรือ", "error");
+        openAuthModal();
+        return;
+      }
+      currentCapElementId = capId;
+      const selectedDate = document.getElementById('dateFilter').value;
+      currentSelectedTrip = { title, price: priceStr, slot: `${selectedDate} (${slot})` };
+      document.getElementById('payServiceTitle').innerText = title + ' - ' + selectedDate;
+      document.getElementById('payAmount').innerText = 'ยอดชำระ: ' + priceStr;
+      document.getElementById('paymentModal').style.display = 'flex';
+    }
+
+    function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
+
+    function simulatePaymentSuccess() {
+      closePaymentModal();
+
+      if (currentCapElementId) {
+        const el = document.getElementById(currentCapElementId);
+        if (el) {
+          el.innerText = "💺 ที่นั่งคงเหลือ: 1 ที่นั่ง (เกือบเต็ม)";
+          el.style.color = "#ff4757";
+        }
+      }
+
+      const recipientEmail = currentUser ? currentUser.email : "customer@gmail.com";
+      const recipientName = currentUser ? currentUser.name : "คุณลูกค้า";
+      const tripTitle = currentSelectedTrip.title || "Gulf Whale Spotting";
+      const tripSlot = currentSelectedTrip.slot || "06:00 - 12:00";
+      const priceVal = currentSelectedTrip.price || "฿2,800";
+
+      sendToGoogleSheet({
+        type: "BOOKING_PAID",
+        username: currentUser ? currentUser.username : "guest",
+        password: "-",
+        fullName: recipientName,
+        email: recipientEmail,
+        phone: currentUser ? currentUser.phone : "-",
+        service: tripTitle,
+        slot: tripSlot
+      });
+
+      emailjs.send("service_vf7kj91", "template_7dnbt1h", { to_email: recipientEmail, user_name: recipientName, service_name: tripTitle, time_slot: tripSlot }, "TBiTFnSwjv7HfmAgq")
+      .then(() => {
+        showToast("ชำระเงินสำเร็จ!", `ส่ง E-Ticket เข้า Email (${recipientEmail}) เรียบร้อยแล้ว`, "success");
+        showETicket(tripTitle, tripSlot, priceVal);
+      });
+    }
+
+    function openAdminAuthModal() { document.getElementById('adminAuthModal').style.display = 'flex'; }
+    function closeAdminAuthModal() { document.getElementById('adminAuthModal').style.display = 'none'; }
+
+    function verifyAdminAccess() {
+      const u = document.getElementById('adminUserVal').value.trim();
+      const p = document.getElementById('adminPassVal').value.trim();
+      if (u === "Admin" && p === "Admin") {
+        closeAdminAuthModal();
+        openAdminModal();
+      } else {
+        showToast("สิทธิ์ไม่ถูกต้อง", "Username หรือ Password ของ Admin ไม่ถูกต้อง!", "error");
+      }
+    }
+
+    async function openAdminModal() {
+      document.getElementById('adminModal').style.display = 'flex';
+      const tbody = document.getElementById('adminTableBody');
+      tbody.innerHTML = `<tr><td colspan="5">กำลังโหลดข้อมูลการจอง...</td></tr>`;
+
+      try {
+        const res = await fetch(GOOGLE_SCRIPT_URL + `?action=getAdminData`);
+        const result = await res.json();
+        if (result.status === "success") {
+          rawAdminBookingsData = result.bookingsList || [];
+          document.getElementById('adminTotalSales').innerText = `฿${result.totalSales.toLocaleString()}`;
+          document.getElementById('adminTotalCount').innerText = `${result.totalBookings} ทริป`;
+
+          const total = result.totalBookings || 1;
+          const stats = result.serviceStats || {};
+          
+          const whaleCount = stats["Whale Spotting"] || 0;
+          const squidCount = stats["Squid Fishing"] || 0;
+          const sunsetCount = stats["Coastal Cruise"] || 0;
+          const islandCount = stats["Island Transfer"] || 0;
+
+          document.getElementById('statWhaleText').innerText = `${whaleCount} ทริป (${Math.round(whaleCount/total*100)}%)`;
+          document.getElementById('statWhaleFill').style.width = `${Math.round(whaleCount/total*100)}%`;
+
+          document.getElementById('statSquidText').innerText = `${squidCount} ทริป (${Math.round(squidCount/total*100)}%)`;
+          document.getElementById('statSquidFill').style.width = `${Math.round(squidCount/total*100)}%`;
+
+          document.getElementById('statSunsetText').innerText = `${sunsetCount} ทริป (${Math.round(sunsetCount/total*100)}%)`;
+          document.getElementById('statSunsetFill').style.width = `${Math.round(sunsetCount/total*100)}%`;
+
+          document.getElementById('statIslandText').innerText = `${islandCount} ทริป (${Math.round(islandCount/total*100)}%)`;
+          document.getElementById('statIslandFill').style.width = `${Math.round(islandCount/total*100)}%`;
+
+          let html = "";
+          (result.bookingsList || []).forEach(b => {
+            html += `<tr><td>${b.time}</td><td>${b.name}</td><td>${b.service}</td><td>${b.slot}</td><td style="color:#00ff88;">${b.status}</td></tr>`;
+          });
+          tbody.innerHTML = html || `<tr><td colspan="5">ยังไม่มีรายการจองเข้ามา</td></tr>`;
+        }
+      } catch(e) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#ff4757;">ดึงข้อมูลล้มเหลว</td></tr>`;
+      }
+    }
+
+    function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
+
+    function exportBookingsCSV() {
+      if (!rawAdminBookingsData || rawAdminBookingsData.length === 0) {
+        return showToast("ไม่มีข้อมูล", "ไม่มีข้อมูลการจองสำหรับ Export CSV", "error");
+      }
+
+      let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+      csvContent += "Booking Time,Customer Name,Email,Service Activity,Time Slot,Status\n";
+
+      rawAdminBookingsData.forEach(row => {
+        csvContent += `"${row.time}","${row.name}","${row.email}","${row.service}","${row.slot}","${row.status}"\n`;
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `ZPRBOOKING_Report_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Export สำเร็จ", "ส่งออกไฟล์ข้อมูลการจอง CSV เรียบร้อยแล้ว", "success");
+    }
+
+    /* OpenStreetMap + OpenSeaMap Hat Chao Samran Focused Map (Zoom Level 12) */
+    const map = L.map('vesselMap').setView([13.0100, 100.1200], 12);
+    
+    // Base OpenStreetMap Standard Layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Marine Layer Overlay (OpenSeaMap)
+    L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; OpenSeaMap contributors'
+    }).addTo(map);
+
+    const serviceColors = {
+      "Whale Spotting": "#00ff88", "Squid Fishing": "#00d2ff", "Fishing": "#ff3366",
+      "Coastal Cruise": "#ff9f43", "Island Transfer": "#ffd15c"
+    };
+
+    function createBoatMarker(color, extraClass = "") {
+      return L.divIcon({
+        className: 'custom-boat-icon',
+        html: `<div class="${extraClass}" style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 10px ${color};"></div>`,
+        iconSize: [14, 14], iconAnchor: [7, 7]
+      });
+    }
+
+    // 20 Local Vessels at Hat Chao Samran Coast Boundaries:
+    // Latitude: 12.9200 to 13.0800
+    // Longitude: 100.0800 to 100.2200
+    const vessels = [
+      { id: "V-01", name: "Chao Samran Speed 1", type: "speedboat", service: "Whale Spotting", slot: "06:00 - 12:00", lat: 13.0300, lng: 100.1500, speed: "14.2 knots", captain: "Somchai", fuel: "88%", lifejacket: "15/15" },
+      { id: "V-02", name: "Night Fisher 01", type: "longtail", service: "Squid Fishing", slot: "18:00 - 22:00", lat: 13.0200, lng: 100.1000, speed: "0.5 knots", captain: "Prasert", fuel: "92%", lifejacket: "8/8" },
+      { id: "V-03", name: "Sunset Voyager", type: "longtail", service: "Coastal Cruise", slot: "16:30 - 18:30", lat: 12.9800, lng: 100.0900, speed: "5.8 knots", captain: "Anek", fuel: "78%", lifejacket: "8/8" },
+      { id: "V-04", name: "Phetchaburi Marine 1", type: "speedboat", service: "Island Transfer", slot: "08:00 - 12:00", lat: 13.0500, lng: 100.1800, speed: "18.0 knots", captain: "Wichai", fuel: "95%", lifejacket: "15/15" },
+      { id: "V-05", name: "Samran Longtail 2", type: "longtail", service: "Squid Fishing", slot: "06:00 - 10:00", lat: 13.0100, lng: 100.1100, speed: "4.2 knots", captain: "Boonmee", fuel: "85%", lifejacket: "8/8" },
+      { id: "V-06", name: "Blue Gulf Explorer", type: "speedboat", service: "Whale Spotting", slot: "09:00 - 15:00", lat: 13.0700, lng: 100.1900, speed: "12.0 knots", captain: "Krai", fuel: "80%", lifejacket: "15/15" },
+      { id: "V-07", name: "Hat Chao Express 3", type: "speedboat", service: "Whale Spotting", slot: "12:30 - 18:30", lat: 13.0600, lng: 100.1600, speed: "15.5 knots", captain: "Chai", fuel: "90%", lifejacket: "15/15" },
+      { id: "V-08", name: "Night Fisher 02", type: "longtail", service: "Squid Fishing", slot: "18:00 - 22:00", lat: 12.9600, lng: 100.1200, speed: "0.0 knots", captain: "Narong", fuel: "100%", lifejacket: "8/8" },
+      { id: "V-09", name: "Wave Runner 09", type: "speedboat", service: "Island Transfer", slot: "13:00 - 17:00", lat: 13.0400, lng: 100.1300, speed: "16.8 knots", captain: "Somsak", fuel: "86%", lifejacket: "15/15" },
+      { id: "V-10", name: "Samran Heritage 4", type: "longtail", service: "Coastal Cruise", slot: "17:00 - 19:00", lat: 12.9500, lng: 100.0800, speed: "6.0 knots", captain: "Udom", fuel: "90%", lifejacket: "8/8" },
+      { id: "V-11", name: "Phetchaburi DeepSea", type: "speedboat", service: "Whale Spotting", slot: "05:00 - 13:00", lat: 13.0800, lng: 100.2100, speed: "11.2 knots", captain: "Vichan", fuel: "75%", lifejacket: "15/15" },
+      { id: "V-12", name: "Local Pride 05", type: "longtail", service: "Coastal Cruise", slot: "10:00 - 12:00", lat: 13.0000, lng: 100.0900, speed: "5.0 knots", captain: "Tawan", fuel: "82%", lifejacket: "8/8" },
+      { id: "V-13", name: "Chao Samran Star 6", type: "speedboat", service: "Whale Spotting", slot: "06:00 - 12:00", lat: 13.0400, lng: 100.1700, speed: "13.0 knots", captain: "Sak", fuel: "87%", lifejacket: "15/15" },
+      { id: "V-14", name: "Night Fisher 03", type: "longtail", service: "Squid Fishing", slot: "22:00 - 02:00", lat: 12.9900, lng: 100.1300, speed: "0.1 knots", captain: "Mana", fuel: "94%", lifejacket: "8/8" },
+      { id: "V-15", name: "Coral Diver 01", type: "speedboat", service: "Island Transfer", slot: "13:00 - 17:00", lat: 13.0200, lng: 100.1600, speed: "10.5 knots", captain: "Preecha", fuel: "89%", lifejacket: "15/15" },
+      { id: "V-16", name: "Samran Breeze 07", type: "longtail", service: "Coastal Cruise", slot: "16:30 - 18:30", lat: 12.9300, lng: 100.1000, speed: "5.4 knots", captain: "Surachai", fuel: "91%", lifejacket: "8/8" },
+      { id: "V-17", name: "Phetchaburi Express 2", type: "speedboat", service: "Island Transfer", slot: "08:00 - 12:00", lat: 13.0300, lng: 100.1400, speed: "17.2 knots", captain: "Kitti", fuel: "84%", lifejacket: "15/15" },
+      { id: "V-18", name: "Night Fisher 04", type: "longtail", service: "Squid Fishing", slot: "18:00 - 22:00", lat: 12.9400, lng: 100.1100, speed: "0.3 knots", captain: "Winai", fuel: "96%", lifejacket: "8/8" },
+      { id: "V-19", name: "Ocean Breeze 19", type: "speedboat", service: "Island Transfer", slot: "09:00 - 15:00", lat: 13.0500, lng: 100.2000, speed: "11.8 knots", captain: "Arun", fuel: "83%", lifejacket: "15/15" },
+      { id: "V-20", name: "Chao Samran Pearl 8", type: "longtail", service: "Coastal Cruise", slot: "13:00 - 17:00", lat: 12.9700, lng: 100.1200, speed: "4.8 knots", captain: "Kamon", fuel: "90%", lifejacket: "8/8" }
+    ];
+
+    L.marker([13.0075, 100.0610]).addTo(map).bindPopup(`<b>⚓ ท่าเรือหาดเจ้าสำราญ (Main Pier)</b>`);
+
+    let mapMarkers = [];
+    vessels.forEach(boat => {
+      const color = serviceColors[boat.service] || "#ffffff";
+      const marker = L.marker([boat.lat, boat.lng], { icon: createBoatMarker(color) }).addTo(map);
+      marker.bindPopup(`
+        <div class="vessel-info-popup">
+          <h4>🛥️ ${boat.name}</h4>
+          <span style="font-size:10px; background:#1c2541; padding:2px 6px; border-radius:4px; color:#4cc9f0;">ID: ${boat.id}</span>
+          <table>
+            <tr><td>กิจกรรม:</td><td class="val" style="color:${color};">${boat.service}</td></tr>
+            <tr><td>รอบเวลา:</td><td class="val" style="color:#4cc9f0;">${boat.slot}</td></tr>
+            <tr><td>ความเร็ว:</td><td class="val" id="sp-${boat.id}">${boat.speed}</td></tr>
+            <tr><td>กัปตันเรือ:</td><td class="val">${boat.captain}</td></tr>
+            <tr><td>⛽ น้ำมันคงเหลือ:</td><td class="val" style="color:#00ff88;">${boat.fuel}</td></tr>
+            <tr><td>🤿 อุปกรณ์ชูชีพ:</td><td class="val" style="color:#ffd15c;">${boat.lifejacket} พร้อม</td></tr>
+          </table>
+          <button class="popup-btn" onclick="startBooking('${boat.name}', '฿2,800', '${boat.slot}')">จองรอบเรือนี้</button>
+        </div>
+      `);
+      mapMarkers.push({ marker, boat });
+    });
+
+    /* REAL-TIME AUTO-UPDATE ENGINE (ขยับพิกัดสุ่มเฉพาะพื้นที่หาดเจ้าสำราญ ทุก 3 วินาที) */
+    setInterval(() => {
+      mapMarkers.forEach(item => {
+        // Random step movement
+        let deltaLat = (Math.random() - 0.5) * 0.0025;
+        let deltaLng = (Math.random() - 0.5) * 0.0025;
+
+        // Apply Geofence boundaries for Hat Chao Samran coast
+        let newLat = item.boat.lat + deltaLat;
+        let newLng = item.boat.lng + deltaLng;
+
+        if (newLat < 12.9100 || newLat > 13.0900) deltaLat = -deltaLat;
+        if (newLng < 100.0700 || newLng > 100.2200) deltaLng = -deltaLng;
+
+        item.boat.lat += deltaLat;
+        item.boat.lng += deltaLng;
+
+        item.marker.setLatLng([item.boat.lat, item.boat.lng]);
+
+        const speedEl = document.getElementById(`sp-${item.boat.id}`);
+        if(speedEl) {
+          const newSpeed = (5 + Math.random() * 12).toFixed(1);
+          speedEl.innerText = `${newSpeed} knots`;
+        }
+      });
+    }, 3000);
+
+    function focusHatChaoSamran() {
+      map.setView([13.0100, 100.1200], 12);
+      showToast("🎯 โฟกัสพิกัด", "เลื่อนมุมมองมายังพื้นที่เรือท่องเที่ยวหาดเจ้าสำราญแล้ว", "info");
+    }
+
+    function triggerEmergencySOS() {
+      const sosVessel = mapMarkers[0];
+      sosVessel.marker.setIcon(createBoatMarker("#ff4757", "sos-pulse-marker"));
+      sosVessel.marker.openPopup();
+      map.setView([sosVessel.boat.lat, sosVessel.boat.lng], 13);
+
+      showToast("🚨 SOS EMERGENCY TRIGGERED", `แจ้งเหตุฉุกเฉินบนเรือ ${sosVessel.boat.name} พิกัด (${sosVessel.boat.lat.toFixed(4)}, ${sosVessel.boat.lng.toFixed(4)}) สัญญาณสีแดงกะพริบแสดงบนแผนที่แล้ว`, "error");
+    }
+
+    function filterCharters() {
+      const cat = document.getElementById('categoryFilter').value;
+      const trip = document.getElementById('tripFilter').value;
+      const cards = document.querySelectorAll('#charterCardsContainer .card');
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        const cardService = card.getAttribute('data-service');
+
+        const matchCat = (cat === 'all' || cat === cardCat);
+        const matchService = (trip === 'all' || trip === cardService);
+
+        card.style.display = (matchCat && matchService) ? 'flex' : 'none';
+      });
+
+      let activeMapCount = 0;
+      mapMarkers.forEach(item => {
+        const matchCat = (cat === 'all' || cat === item.boat.type);
+        const matchService = (trip === 'all' || trip === item.boat.service);
+
+        if (matchCat && matchService) {
+          item.marker.addTo(map);
+          activeMapCount++;
+        } else {
+          map.removeLayer(item.marker);
+        }
+      });
+
+      document.getElementById('activeCountText').innerText = `${activeMapCount} VESSELS ACTIVE ON MAP`;
+    }
+
+    const legend = L.control({ position: 'topright' });
+    legend.onAdd = function () {
+      const div = L.DomUtil.create('div', 'map-legend');
+      div.innerHTML = `
+        <h5>Fleet Color Key</h5>
+        <div class="legend-item"><span class="legend-color" style="background:#00ff88;"></span> Whale Spotting</div>
+        <div class="legend-item"><span class="legend-color" style="background:#00d2ff;"></span> Squid Fishing</div>
+        <div class="legend-item"><span class="legend-color" style="background:#ff9f43;"></span> Sunset Cruise</div>
+        <div class="legend-item"><span class="legend-color" style="background:#ffd15c;"></span> Island Transfer</div>
+      `;
+      return div;
+    };
+    legend.addTo(map);
+  </script>
+
+</body>
+</html>
