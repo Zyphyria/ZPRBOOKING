@@ -189,7 +189,7 @@
 
     .policy-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
     .policy-box { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-    .policy-box h4 { color: #2681ff; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .policy-box h4 { color: #2681ff; font-size: 15px; margin-bottom: 6px; display: flex; align- items: center; gap: 6px; font-weight: 700; }
     .policy-box p { font-size: 13px; color: #595959; }
 
     .tracker-card { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 20px; padding: 24px; margin-top: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
@@ -229,8 +229,32 @@
     .modal-tab { padding: 8px 12px; background: none; border: none; color: #8c8c8c; font-weight: 700; cursor: pointer; border-bottom: 2px solid transparent; font-size: 15px; }
     .modal-tab.active { color: #2681ff; border-bottom-color: #2681ff; }
     .modal-form { display: flex; flex-direction: column; gap: 12px; }
-    .close-btn { margin-top: 14px; background: #f5f7fa; color: #595959; border: 1px solid #d9d9d9; padding: 8px 16px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-    .close-btn:hover { background: #e5e9f0; }
+    
+    /* 🔴 ปรับปุ่มปิดหน้าต่าง (Close Button) ให้เด่น ชัดเจนยิ่งขึ้น */
+    .close-btn { 
+      margin-top: 16px; 
+      background: #434e5a; 
+      color: #ffffff; 
+      border: none; 
+      padding: 12px 18px; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      width: 100%; 
+      font-weight: 800; 
+      font-size: 14.5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .close-btn:hover { 
+      background: #ff4d4f; 
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(255, 77, 79, 0.3);
+    }
 
     /* Trip.com Account Dashboard Layout */
     .trip-account-card { background: #ffffff; border: 1px solid #e5e9f0; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
@@ -498,7 +522,7 @@
     </div>
   </div>
 
-  <!-- Services & Booking Slots Section -->
+  <!-- Services & Booking Slots Section (Expanded Charters List) -->
   <div class="container" id="charters">
     <h2>รายการเรือและรอบบริการที่เปิดจอง (Featured Charters)</h2>
     <div class="cards-grid" id="charterCardsContainer">
@@ -506,13 +530,11 @@
       <!-- Card 1 -->
       <div class="card" data-category="speedboat" data-service="Whale Spotting" data-price="4200" data-order="1">
         <div>
-          <h3>Gulf Whale Spotting</h3>
-          
+          <h3>Gulf Whale Spotting #1</h3>
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Gold (Low Noise)</span>
             <span class="safety-badge">🛡️ Safety Index 100%</span>
           </div>
-
           <p>ทริป 6 ชั่วโมง ล่องเรือชมวาฬบรูด้ากลางอ่าวไทยตอนบน หน้าหาดเจ้าสำราญ พร้อมไกด์นำทางท้องถิ่น</p>
           <div class="capacity-tag" id="cap-1">💺 ที่นั่งคงเหลือ: 4 / 12 ที่นั่ง</div>
           <div class="slot-title">Available Time Slots:</div>
@@ -523,20 +545,18 @@
         </div>
         <div>
           <div class="price-tag">฿4,200 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
-          <button class="btn-action" onclick="startBooking('Gulf Whale Spotting (ชมวาฬบรูด้า)', '฿4,200', '06:00 - 12:00', 'cap-1')">จองรอบนี้ (Book Now)</button>
+          <button class="btn-action" onclick="startBooking('Gulf Whale Spotting #1 (ชมวาฬบรูด้า)', '฿4,200', '06:00 - 12:00', 'cap-1')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="card" data-category="longtail" data-service="Squid Fishing" data-price="2800" data-order="2">
         <div>
-          <h3>Night Squid Fishing</h3>
-          
+          <h3>Night Squid Fishing VIP</h3>
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Green (LED Attraction)</span>
             <span class="safety-badge">🛡️ Safety Index 100%</span>
           </div>
-
           <p>กิจกรรมตกหมึกเรือหางยาว 4 ชั่วโมง ยามค่ำคืน ชายหาดเจ้าสำราญ อุปกรณ์ครบ พร้อมบริการทำซาซิมิสด</p>
           <div class="capacity-tag" id="cap-2">💺 ที่นั่งคงเหลือ: 2 / 6 ที่นั่ง</div>
           <div class="slot-title">Available Time Slots:</div>
@@ -547,20 +567,18 @@
         </div>
         <div>
           <div class="price-tag">฿2,800 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
-          <button class="btn-action" onclick="startBooking('Night Squid Fishing (ตกหมึกกลางคืน)', '฿2,800', '18:00 - 22:00', 'cap-2')">จองรอบนี้ (Book Now)</button>
+          <button class="btn-action" onclick="startBooking('Night Squid Fishing VIP (ตกหมึกกลางคืน)', '฿2,800', '18:00 - 22:00', 'cap-2')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
       <!-- Card 3 -->
       <div class="card" data-category="longtail" data-service="Coastal Cruise" data-price="1500" data-order="3">
         <div>
-          <h3>Coastal Sunset Cruise</h3>
-          
+          <h3>Coastal Sunset Cruise Express</h3>
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Standard</span>
             <span class="safety-badge">🛡️ Safety Index 100%</span>
           </div>
-
           <p>ล่องเรือหางยาวเหมาลำ 2 ชั่วโมง ชมพระอาทิตย์ตกดินขอบฟ้าชายหาดเจ้าสำราญ เพชรบุรี</p>
           <div class="capacity-tag" id="cap-3">💺 ที่นั่งคงเหลือ: 5 / 6 ที่นั่ง</div>
           <div class="slot-title">Available Time Slots:</div>
@@ -571,20 +589,18 @@
         </div>
         <div>
           <div class="price-tag">฿1,500 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
-          <button class="btn-action" onclick="startBooking('Coastal Sunset Cruise (ล่องเรือชมพระอาทิตย์ตก)', '฿1,500', '16:30 - 18:30', 'cap-3')">จองรอบนี้ (Book Now)</button>
+          <button class="btn-action" onclick="startBooking('Coastal Sunset Cruise Express (ล่องเรือชมพระอาทิตย์ตก)', '฿1,500', '16:30 - 18:30', 'cap-3')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
       <!-- Card 4 -->
       <div class="card" data-category="speedboat" data-service="Island Transfer" data-price="3500" data-order="4">
         <div>
-          <h3>Koh Phai Island Shuttle</h3>
-          
+          <h3>Koh Phai Island Shuttle Express</h3>
           <div class="eco-safety-box">
             <span class="eco-badge">🌿 Eco-Silver</span>
             <span class="safety-badge">🛡️ Safety Index 100%</span>
           </div>
-
           <p>เรือสปีดโบ๊ทรับ-ส่งไปกลับเกาะไผ่ ชายฝั่งเพชรบุรี ดำน้ำชมปะการังและหาดทรายส่วนตัว</p>
           <div class="capacity-tag" id="cap-4">💺 ที่นั่งคงเหลือ: 8 / 12 ที่นั่ง</div>
           <div class="slot-title">Available Time Slots:</div>
@@ -595,7 +611,92 @@
         </div>
         <div>
           <div class="price-tag">฿3,500 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
-          <button class="btn-action" onclick="startBooking('Koh Phai Island Shuttle (รับส่งเกาะไผ่)', '฿3,500', '08:00 - 12:00', 'cap-4')">จองรอบนี้ (Book Now)</button>
+          <button class="btn-action" onclick="startBooking('Koh Phai Island Shuttle Express (รับส่งเกาะไผ่)', '฿3,500', '08:00 - 12:00', 'cap-4')">จองรอบนี้ (Book Now)</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" data-category="longtail" data-service="Coastal Cruise" data-price="1200" data-order="5">
+        <div>
+          <h3>Morning Coastal Explorer</h3>
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Eco-Standard</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+          <p>ล่องเรือหางยาวรับลมเช้า ชายฝั่งหาดเจ้าสำราญ เหมาะสำหรับครอบครัวและถ่ายภาพมุมสูง</p>
+          <div class="capacity-tag" id="cap-5">💺 ที่นั่งคงเหลือ: 6 / 6 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">07:00 - 09:00</span>
+            <span class="slot-badge">09:30 - 11:30</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿1,200 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Morning Coastal Explorer (ล่องเรือชมวิวเช้า)', '฿1,200', '07:00 - 09:00', 'cap-5')">จองรอบนี้ (Book Now)</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card" data-category="speedboat" data-service="Whale Spotting" data-price="5500" data-order="6">
+        <div>
+          <h3>Luxury Gulf Whale Safari</h3>
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Premium Charter</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+          <p>ทริปพิเศษเรือสปีดโบ๊ทสองเครื่องยนต์ บริการเครื่องดื่มและอาหารว่างเต็มรูปแบบ ชมวาฬบรูด้า</p>
+          <div class="capacity-tag" id="cap-6">💺 ที่นั่งคงเหลือ: 10 / 15 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">06:00 - 13:00</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿5,500 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Luxury Gulf Whale Safari (ชมวาฬพรีเมียม)', '฿5,500', '06:00 - 13:00', 'cap-6')">จองรอบนี้ (Book Now)</button>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card" data-category="longtail" data-service="Squid Fishing" data-price="2200" data-order="7">
+        <div>
+          <h3>Local Style Squid Fishing</h3>
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Local Fisher</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+          <p>ตกหมึกสไตล์ชาวประมงพื้นบ้านหาดเจ้าสำราญ สัมผัสวิถีชีวิตดั้งเดิม พร้อมน้ำจิ้มซีฟู้ดรสเด็ด</p>
+          <div class="capacity-tag" id="cap-7">💺 ที่นั่งคงเหลือ: 3 / 5 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">18:30 - 22:30</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿2,200 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Local Style Squid Fishing (ตกหมึกชาวบ้าน)', '฿2,200', '18:30 - 22:30', 'cap-7')">จองรอบนี้ (Book Now)</button>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card" data-category="speedboat" data-service="Island Transfer" data-price="4800" data-order="8">
+        <div>
+          <h3>Private Coral Diving & Island Transfer</h3>
+          <div class="eco-safety-box">
+            <span class="eco-badge">🌿 Coral Safe</span>
+            <span class="safety-badge">🛡️ Safety Index 100%</span>
+          </div>
+          <p>เหมาลำสปีดโบ๊ทไปเกาะไผ่ ดำน้ำชมปะการังพร้อมอุปกรณ์ Snorkeling และครูฝึกดูแลความปลอดภัย</p>
+          <div class="capacity-tag" id="cap-8">💺 ที่นั่งคงเหลือ: 6 / 10 ที่นั่ง</div>
+          <div class="slot-title">Available Time Slots:</div>
+          <div class="time-slots">
+            <span class="slot-badge">08:30 - 14:30</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-tag">฿4,800 <span style="font-size:12px; color:#8c8c8c; font-weight:normal;">/ ลำ</span></div>
+          <button class="btn-action" onclick="startBooking('Private Coral Diving (ดำน้ำเกาะไผ่)', '฿4,800', '08:30 - 14:30', 'cap-8')">จองรอบนี้ (Book Now)</button>
         </div>
       </div>
 
@@ -741,7 +842,7 @@
         </div>
         <button class="btn-action" id="btnRegisterSubmit" style="margin-top:10px;" onclick="handleRegister()">ยืนยันลงทะเบียน</button>
       </div>
-      <button class="close-btn" onclick="closeAuthModal()">ยกเลิก</button>
+      <button class="close-btn" onclick="closeAuthModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -811,7 +912,7 @@
         </div>
       </div>
 
-      <button class="close-btn" onclick="closeProfileModal()">ปิดหน้าต่าง</button>
+      <button class="close-btn" onclick="closeProfileModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -824,7 +925,7 @@
         <p style="margin-top:16px; font-size:13px; color:#8c8c8c;">กำลังโหลดข้อมูลการจอง...</p>
       </div>
 
-      <button class="close-btn" onclick="closeMyBookingsModal()">ปิดหน้าต่าง</button>
+      <button class="close-btn" onclick="closeMyBookingsModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -869,7 +970,7 @@
         <button class="btn-action" style="background:#2681ff; color:#ffffff;" onclick="window.print()">🖨️ พิมพ์ตั๋ว</button>
         <button class="btn-action" style="background:#52c41a; color:#ffffff;" onclick="downloadTicketImage()">📸 โหลดเป็นรูปภาพ</button>
       </div>
-      <button class="close-btn" onclick="closeETicketModal()">ปิดตั๋ว</button>
+      <button class="close-btn" onclick="closeETicketModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -895,7 +996,7 @@
         </div>
         <button class="btn-action" style="background:#ff9d00; color:#ffffff; margin-top:10px;" onclick="submitTripReview()">ส่งรีวิว & คะแนนประเมิน</button>
       </div>
-      <button class="close-btn" onclick="closeReviewModal()">ยกเลิก</button>
+      <button class="close-btn" onclick="closeReviewModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -913,7 +1014,7 @@
         </div>
         <button class="btn-action" style="background:#ff9f43; color:#ffffff; margin-top:10px;" onclick="verifyAdminAccess()">เข้าสู่ระบบ Admin</button>
       </div>
-      <button class="close-btn" onclick="closeAdminAuthModal()">ยกเลิก</button>
+      <button class="close-btn" onclick="closeAdminAuthModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -973,7 +1074,7 @@
         </table>
       </div>
 
-      <button class="close-btn" onclick="closeAdminModal()">ปิดหน้าต่าง Admin</button>
+      <button class="close-btn" onclick="closeAdminModal()">✖ ปิดหน้าต่าง (Close)</button>
     </div>
   </div>
 
@@ -1393,7 +1494,7 @@
         `,
         showCancelButton: true,
         confirmButtonText: '[Demo Simulation] สแกนจ่ายสำเร็จ',
-        cancelButtonText: 'ยกเลิกการจอง',
+        cancelButtonText: '✖ ยกเลิกการจอง',
         confirmButtonColor: '#52c41a',
         cancelButtonColor: '#ff4d4f'
       }).then((result) => {
