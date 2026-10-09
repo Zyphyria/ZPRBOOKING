@@ -1368,7 +1368,7 @@
       generatedEmailOTP = Math.floor(100000 + Math.random() * 900000).toString();
       document.getElementById('emailOtpInput').style.display = 'block';
 
-      emailjs.send("service_vf7kj91", "template_6w71s07", { to_email: email, otp_code: generatedEmailOTP }, "TBiTFnSwjv7HfmAgq")
+      emailjs.send("service_vf7kj91", "a4pw6t9", { to_email: email, otp_code: generatedEmailOTP }, "TBiTFnSwjv7HfmAgq")
       .then(() => {
         showToast("ส่ง OTP สำเร็จ", `จัดส่งรหัส OTP ไปยัง Email (${email}) เรียบร้อย`, "success");
       })
