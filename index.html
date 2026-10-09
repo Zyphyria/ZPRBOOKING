@@ -1368,6 +1368,7 @@
       generatedEmailOTP = Math.floor(100000 + Math.random() * 900000).toString();
       document.getElementById('emailOtpInput').style.display = 'block';
 
+      // ใช้ Service ID: service_vf7kj91 และ Template ID: template_6w71s07
       emailjs.send("service_vf7kj91", "template_6w71s07", { to_email: email, otp_code: generatedEmailOTP }, "TBiTFnSwjv7HfmAgq")
       .then(() => {
         showToast("ส่ง OTP สำเร็จ", `จัดส่งรหัส OTP ไปยัง Email (${email}) เรียบร้อย`, "success");
@@ -1500,6 +1501,7 @@
         slot: tripSlot
       });
 
+      // ใช้ Service ID: service_vf7kj91 และ Template ID: template_7dnbt1h
       emailjs.send("service_vf7kj91", "template_7dnbt1h", { to_email: recipientEmail, user_name: recipientName, service_name: tripTitle, time_slot: tripSlot }, "TBiTFnSwjv7HfmAgq")
       .then(() => {
         showToast("ชำระเงินสำเร็จ!", `ส่ง E-Ticket เข้า Email (${recipientEmail}) เรียบร้อยแล้ว`, "success");
